@@ -1,0 +1,100 @@
+<?php
+
+namespace ReviewPlugin\Constants\Fields;
+
+use ReviewPlugin\Constants\Field_Prefix;
+
+/**
+ * Post_Meta
+ *
+ * WP_Postmeta_Feilds
+ */
+class Post_Meta {
+
+	/**
+	 * @var string
+	 */
+    const ENABLE_REVIEW = Field_Prefix::POSTMETA.'enable_review';
+
+	/**
+	 * @var string
+	 */
+	const REVIEW_TYPE = Field_Prefix::POSTMETA.'review_type';
+
+	// /**
+	//  * @var string
+	//  */
+    // const FORMAT = Field_Prefix::POSTMETA.'format';
+
+	// /**
+	//  * @var string
+	//  */
+    // const LOCATION = Field_Prefix::POSTMETA.'location';
+
+	// /**
+	//  * @var string
+	//  */
+    // const DESIGN = Field_Prefix::POSTMETA.'design';
+
+	// /**
+	//  * @var string
+	//  */
+	// const EFFECT = Field_Prefix::POSTMETA.'effect';
+
+	// /**
+	//  * @var string
+	//  */
+	// const SKIN = Field_Prefix::POSTMETA.'skin';
+
+	// /**
+	//  * @var string
+	//  */
+	// const COLOR = Field_Prefix::POSTMETA.'color';
+
+	/**
+	 * @var string
+	 */
+	const USE_POST_TITLE = Field_Prefix::POSTMETA.'use_post_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const USE_FEATURED_IMAGE = Field_Prefix::POSTMETA.'use_featured_image';
+
+	// /**
+	//  * @var string
+	//  */
+	// const SCORE_SUBTITLE = Field_Prefix::POSTMETA.'score_subtitle';
+
+	// /**
+	//  * @var string
+	//  */
+	// const POSI_TITLE = Field_Prefix::POSTMETA.'posi_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const NEGA_TITLE = Field_Prefix::POSTMETA.'nega_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const AFFILI_BLOCK_TITLE = Field_Prefix::POSTMETA.'affili_block_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const CONCLUSION_TITLE = Field_Prefix::POSTMETA.'conclusion_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const GALLERY_BLOCK_TITLE = Field_Prefix::POSTMETA.'gallery_block_title';
+
+	// /**
+	//  * @var string
+	//  */
+	// const CRITERIAS = Field_Prefix::POSTMETA.'criterias';
+
+}
+
