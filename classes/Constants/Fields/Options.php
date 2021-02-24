@@ -14,17 +14,17 @@ class Options {
 	/**
 	 * @var string
 	 */
-    const FORMAT = Field_Prefix::OPTIONS.'format';
+	const FORMAT = Field_Prefix::OPTIONS.'format';
 
 	/**
 	 * @var string
 	 */
-    const LOCATION = Field_Prefix::OPTIONS.'location';
+	const LOCATION = Field_Prefix::OPTIONS.'location';
 
 	/**
 	 * @var string
 	 */
-    const DESIGN = Field_Prefix::OPTIONS.'design';
+	const DESIGN = Field_Prefix::OPTIONS.'design';
 
 	/**
 	 * @var string
@@ -85,5 +85,10 @@ class Options {
 	 * @var string
 	 */
 	const CRITERIAS = Field_Prefix::OPTIONS.'criterias';
+
+	/**
+	 * @var string
+	 */
+	const CRITERIA_SCORES = Field_Prefix::OPTIONS.'criteria_scores';
 }
 

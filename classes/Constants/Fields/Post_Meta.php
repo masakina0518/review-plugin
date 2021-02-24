@@ -14,42 +14,42 @@ class Post_Meta {
 	/**
 	 * @var string
 	 */
-    const ENABLE_REVIEW = Field_Prefix::POSTMETA.'enable_review';
+	const ENABLE_REVIEW = Field_Prefix::POSTMETA.'enable_review';
 
 	/**
 	 * @var string
 	 */
 	const REVIEW_TYPE = Field_Prefix::POSTMETA.'review_type';
 
-	// /**
-	//  * @var string
-	//  */
-    // const FORMAT = Field_Prefix::POSTMETA.'format';
+	/**
+	 * @var string
+	 */
+	const FORMAT = Field_Prefix::POSTMETA.'format';
 
-	// /**
-	//  * @var string
-	//  */
-    // const LOCATION = Field_Prefix::POSTMETA.'location';
+	/**
+	 * @var string
+	 */
+	const LOCATION = Field_Prefix::POSTMETA.'location';
 
-	// /**
-	//  * @var string
-	//  */
-    // const DESIGN = Field_Prefix::POSTMETA.'design';
+	/**
+	 * @var string
+	 */
+	const DESIGN = Field_Prefix::POSTMETA.'design';
 
-	// /**
-	//  * @var string
-	//  */
-	// const EFFECT = Field_Prefix::POSTMETA.'effect';
+	/**
+	 * @var string
+	 */
+	const EFFECT = Field_Prefix::POSTMETA.'effect';
 
-	// /**
-	//  * @var string
-	//  */
-	// const SKIN = Field_Prefix::POSTMETA.'skin';
+	/**
+	 * @var string
+	 */
+	const SKIN = Field_Prefix::POSTMETA.'skin';
 
-	// /**
-	//  * @var string
-	//  */
-	// const COLOR = Field_Prefix::POSTMETA.'color';
+	/**
+	 * @var string
+	 */
+	const COLOR = Field_Prefix::POSTMETA.'color';
 
 	/**
 	 * @var string
@@ -61,40 +61,85 @@ class Post_Meta {
 	//  */
 	// const USE_FEATURED_IMAGE = Field_Prefix::POSTMETA.'use_featured_image';
 
-	// /**
-	//  * @var string
-	//  */
-	// const SCORE_SUBTITLE = Field_Prefix::POSTMETA.'score_subtitle';
+	/**
+	 * @var string
+	 */
+	const SCORE_SUBTITLE = Field_Prefix::POSTMETA.'score_subtitle';
 
-	// /**
-	//  * @var string
-	//  */
-	// const POSI_TITLE = Field_Prefix::POSTMETA.'posi_title';
+	/**
+	 * @var string
+	 */
+	const POSI_TITLE = Field_Prefix::POSTMETA.'posi_title';
 
-	// /**
-	//  * @var string
-	//  */
-	// const NEGA_TITLE = Field_Prefix::POSTMETA.'nega_title';
+	/**
+	 * @var string
+	 */
+	const POSI_POINTS = Field_Prefix::POSTMETA.'posi_points';
 
-	// /**
-	//  * @var string
-	//  */
-	// const AFFILI_BLOCK_TITLE = Field_Prefix::POSTMETA.'affili_block_title';
+	/**
+	 * @var string
+	 */
+	const NEGA_TITLE = Field_Prefix::POSTMETA.'nega_title';
 
-	// /**
-	//  * @var string
-	//  */
-	// const CONCLUSION_TITLE = Field_Prefix::POSTMETA.'conclusion_title';
+	/**
+	 * @var string
+	 */
+	const NEGA_POINTS = Field_Prefix::POSTMETA.'nega_points';
+
+	/**
+	 * @var string
+	 */
+	const AFFILI_BLOCK_TITLE = Field_Prefix::POSTMETA.'affili_block_title';
+
+	/**
+	 * @var string
+	 */
+	const AFFILI_TITLE = Field_Prefix::POSTMETA.'affili_title';
+
+	/**
+	 * @var string
+	 */
+	const AFFILI_URL = Field_Prefix::POSTMETA.'affili_url';
+
+
+	/**
+	 * @var string
+	 */
+	const CONCLUSION_TITLE = Field_Prefix::POSTMETA.'conclusion_title';
+
+	/**
+	 * @var string
+	 */
+	const CONCLUSION_CONTENTS = Field_Prefix::POSTMETA.'conclusion_contents';
 
 	// /**
 	//  * @var string
 	//  */
 	// const GALLERY_BLOCK_TITLE = Field_Prefix::POSTMETA.'gallery_block_title';
 
-	// /**
-	//  * @var string
-	//  */
-	// const CRITERIAS = Field_Prefix::POSTMETA.'criterias';
+	/**
+	 * @var string
+	 */
+	const CRITERIAS = Field_Prefix::POSTMETA.'criterias';
 
+	/**
+	 * @var string
+	 */
+	const CRITERIA_SCORES = Field_Prefix::POSTMETA.'criteria_scores';
+
+	/**
+	 * @var string
+	 */
+	const CRITERIA_FINAL_SCORE = Field_Prefix::POSTMETA.'criteria_final_score';
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param [type] $field
+	 * @return void
+	 */
+	public static function convert_options( string $postmeta_field ): string {
+		return str_replace( Field_Prefix::POSTMETA, Field_Prefix::OPTIONS, $postmeta_field );
+	}
 }
 

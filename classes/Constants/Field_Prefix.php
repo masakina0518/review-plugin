@@ -10,11 +10,11 @@ class Field_Prefix {
 	/**
 	 * @var string
 	 */
-    const POSTMETA = '_review_plugin_';
+	const POSTMETA = '_review_plugin_';
 
 	/**
 	 * @var string
 	 */
-    const OPTIONS = '_review_plugin_def_';
+	const OPTIONS = '_review_plugin_def_';
 }
 

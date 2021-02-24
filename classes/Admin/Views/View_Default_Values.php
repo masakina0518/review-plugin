@@ -48,7 +48,8 @@ class View_Default_Values {
 		Options::AFFILI_BLOCK_TITLE => '',
 		Options::CONCLUSION_TITLE => '',
 		Options::GALLERY_BLOCK_TITLE => '',
-		Options::CRITERIAS => [],
+		Options::CRITERIAS => ['aaaa', 'bbbb', 'ccccc' ],
+		Options::CRITERIA_SCORES => [ 0, 0, 0 ],
 	];
 
 	/**
@@ -128,9 +129,9 @@ class View_Default_Values {
 	 */
 	public function display( array $data ): void {
 		extract( $data );
-?>
+	?>
 
-<div class="wrap">
+	<div class="wrap">
 	<h1><?php echo self::TITLE; ?></h1>
 
 	<?php if (isset( $success ) && $success ): ?>
@@ -248,13 +249,14 @@ class View_Default_Values {
 		<br>
 		<?php foreach (  $form[Options::CRITERIAS] as $key => $val ): ?>
 			<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Options::CRITERIAS.$key ?>" value="<?php echo $val; ?>" class="regular-text" />
+			<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="regular-text" />
 			<br><br>
 		<?php endforeach; ?>
 
 		<p><?php wp_nonce_field( $this->nonce_field ); ?> </p>
 		<?php submit_button(); ?>
 	</form>
-</div>
+	</div>
 
 <?php
 	}
