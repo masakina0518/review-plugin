@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * Review_Type values
  */
-class Review_Type extends Abstract_Enum {
+final class Review_Type extends Abstract_Enum {
 
 	const EDITOR_REVIEW_VISITOR_RATINGS	= 0;
 	const EDITOR_REVIEW					= 1;

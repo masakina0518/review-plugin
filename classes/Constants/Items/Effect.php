@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * Effect values
  */
-class Effect extends Abstract_Enum {
+final class Effect extends Abstract_Enum {
 
 	const NONE			= 1;
 	const INCREMENTAL	= 2;

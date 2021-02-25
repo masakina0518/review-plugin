@@ -9,7 +9,7 @@ use ReviewPlugin\Constants\Field_Prefix;
  *
  * WP_Postmeta_Feilds
  */
-class Post_Meta {
+final class Post_Meta {
 
 	/**
 	 * @var string
@@ -133,10 +133,51 @@ class Post_Meta {
 	const CRITERIA_FINAL_SCORE = Field_Prefix::POSTMETA.'criteria_final_score';
 
 	/**
-	 * Undocumented function
+	 * @var string
+	 */
+	const SCHEMA_TYPE = Field_Prefix::POSTMETA.'schema_type';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_DESCRIPTION = Field_Prefix::POSTMETA.'schema_propertie_description';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_SKU = Field_Prefix::POSTMETA.'schema_propertie_sku';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_MPN = Field_Prefix::POSTMETA.'schema_propertie_mpn';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_ISBN = Field_Prefix::POSTMETA.'schema_propertie_isbn';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_BRAND = Field_Prefix::POSTMETA.'schema_propertie_brand';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_DIRECTOR = Field_Prefix::POSTMETA.'schema_propertie_director';
+
+	/**
+	 * @var string
+	 */
+	const SCHEMA_PROPERTIE_DATE_CREATED = Field_Prefix::POSTMETA.'schema_propertie_date_created';
+
+
+	/**
+	 * convert_options
 	 *
-	 * @param [type] $field
-	 * @return void
+	 * @param string $postmeta_field
+	 * @return string
 	 */
 	public static function convert_options( string $postmeta_field ): string {
 		return str_replace( Field_Prefix::POSTMETA, Field_Prefix::OPTIONS, $postmeta_field );

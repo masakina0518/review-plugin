@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * Format values
  */
-class Format extends Abstract_Enum {
+final class Format extends Abstract_Enum {
 
 	const PERCENT	= 1;
 	const POINTS	= 2;

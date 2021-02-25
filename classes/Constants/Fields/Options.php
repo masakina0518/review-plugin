@@ -9,7 +9,7 @@ use ReviewPlugin\Constants\Field_Prefix;
  *
  * WP_Options_Feilds
  */
-class Options {
+final class Options {
 
 	/**
 	 * @var string

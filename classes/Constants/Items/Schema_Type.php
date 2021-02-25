@@ -4,26 +4,24 @@ namespace ReviewPlugin\Constants\Items;
 use ReviewPlugin\Constants\Items\Abstract_Enum;
 
 /**
- * Design
+ * Schema_Type
  *
- * Design values
+ * Schema_Type values
  */
-final class Design extends Abstract_Enum {
+final class Schema_Type extends Abstract_Enum {
 
-	const MINIMALIST	= 1;
-	const BOLD			= 2;
-	const MODERN		= 3;
-	const MODERN_B 		= 4;
-	const CLEAN 		= 5;
-	const MINIMALIST_B	= 6;
+	const ORGANIZATION	= 1;
+	const PRODUCT		= 2;
+	const EPISODE		= 3;
+	const MOVIE			= 4;
+	const GAME			= 5;
 
 	private static $NAME = [
-		self::MINIMALIST	=> 'MINIMALIST',
-		self::BOLD			=> 'BOLD',
-		self::MODERN		=> 'MODERN',
-		self::MODERN_B 		=> 'MODERN B',
-		self::CLEAN 		=> 'CLEAN',
-		self::MINIMALIST_B 	=> 'MINIMALIST B',
+		self::ORGANIZATION	=> 'Organization',
+		self::PRODUCT		=> 'Product',
+		self::EPISODE		=> 'Episode',
+		self::MOVIE			=> 'Movie',
+		self::GAME			=> 'Game',
 	];
 
 	/**

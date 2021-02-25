@@ -13,12 +13,12 @@ use ReviewPlugin\Constants\Items\On_Off;
 /**
  * View_Default_Values
  */
-class View_Default_Values {
+final class View_Default_Values {
 
 	/**
 	 * @var string
 	 */
-	const TITLE = 'Review Options';
+	const TITLE = 'Options';
 
 	/**
 	 * @var string
@@ -33,7 +33,7 @@ class View_Default_Values {
 	/**
 	 * @var array
 	 */
-	private $default = [
+	private $form_default_values = [
 		Options::FORMAT => Format::PERCENT,
 		Options::LOCATION => Location::BOTTOM,
 		Options::DESIGN => Design::MINIMALIST,
@@ -69,8 +69,8 @@ class View_Default_Values {
 	 * @return array
 	 */
 	private function initialize( array $data ): array {
-		$data['form'] = $this->default;
-		foreach (  $this->default as $field => $val ) {
+		$data['form'] = $this->form_default_values;
+		foreach (  $this->form_default_values as $field => $value ) {
 			if( $current_val = get_option( $field ) ) {
 				$data['form'][$field] = $current_val;
 			}
@@ -96,7 +96,7 @@ class View_Default_Values {
 			check_admin_referer( $this->nonce_field );
 			foreach ( $data['form'] as $field => $value ) {
 				/* In the case not set value, to change at default value. */
-				$update_val = $this->default[$field];
+				$update_val = $this->form_default_values[$field];
 				if ( array_key_exists( $field, $post_data ) ) {
 					$update_val = $post_data[$field];
 				}
@@ -247,11 +247,24 @@ class View_Default_Values {
 
 		<h2>Criterias</h2>
 		<br>
-		<?php foreach (  $form[Options::CRITERIAS] as $key => $val ): ?>
-			<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Options::CRITERIAS.$key ?>" value="<?php echo $val; ?>" class="regular-text" />
-			<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="regular-text" />
-			<br><br>
-		<?php endforeach; ?>
+		<div id="<?php echo Options::CRITERIAS; ?>">
+			<?php foreach (  $form[Options::CRITERIAS] as $key => $value ): ?>
+				<div>
+					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Options::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="regular-text" />
+				</div>
+				<br><br>
+			<?php endforeach; ?>
+
+			<script type="text/html" id="<?php echo Options::CRITERIAS; ?>_template">
+				<div>
+					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden"  value="0" class="regular-text" />
+				</div>
+				<br><br>
+			</script>
+		</div>
+
 
 		<p><?php wp_nonce_field( $this->nonce_field ); ?> </p>
 		<?php submit_button(); ?>

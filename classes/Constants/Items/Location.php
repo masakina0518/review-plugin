@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * Location values
  */
-class Location extends Abstract_Enum {
+final class Location extends Abstract_Enum {
 
 	const BOTTOM	= 1;
 	const TOP		= 2;

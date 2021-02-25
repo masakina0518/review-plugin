@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * On_Off values
  */
-class On_Off extends Abstract_Enum {
+final class On_Off extends Abstract_Enum {
 
 	const OFF	= 0;
 	const ON	= 1;

@@ -5,7 +5,7 @@ namespace ReviewPlugin\Constants;
 /**
  * Field_Prefix
  */
-class Field_Prefix {
+final class Field_Prefix {
 
 	/**
 	 * @var string

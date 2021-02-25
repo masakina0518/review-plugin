@@ -8,7 +8,7 @@ use ReviewPlugin\Constants\Items\Abstract_Enum;
  *
  * Skin values
  */
-class Skin extends Abstract_Enum {
+final class Skin extends Abstract_Enum {
 
 	const LIGHT	= 1;
 	const DARK	= 2;
