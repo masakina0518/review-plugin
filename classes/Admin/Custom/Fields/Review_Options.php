@@ -22,12 +22,12 @@ final class Review_Options {
 	/**
 	 * @var string
 	 */
-	private $id = 'review_options';
+	const ID = 'review_options';
 
 	/**
 	 * @var string
 	 */
-	private $title = 'Review Options';
+	const TITLE = 'Review Options';
 
 	/**
 	 * @var array
@@ -124,8 +124,8 @@ final class Review_Options {
 	public function add_meta_box(): void {
 		/** display */
 		add_meta_box(
-			$this->id,
-			$this->title,
+			self::ID,
+			self::TITLE,
 			array(
 				$this,
 				'display'
@@ -145,9 +145,9 @@ final class Review_Options {
 	 */
 	public function style(): void {
 		wp_enqueue_style(
-			$this->id,
+			self::ID,
 			$this->pm->getAdminStylePath(
-				$this->id
+				self::ID
 			)
 		);
 	}
@@ -159,9 +159,9 @@ final class Review_Options {
 	 */
 	public function script(): void {
 		wp_enqueue_script(
-			$this->id,
+			self::ID,
 			$this->pm->getAdminScriptPath(
-				$this->id
+				self::ID
 			),
 			array(
 				'jquery',
@@ -238,7 +238,7 @@ final class Review_Options {
 			),
 			get_the_ID()
 		);
-	?>
+?>
 
 		<h2>ENABLE REVIEW</h2>
 		<?php foreach ( On_Off::getEnums() as $enum ): ?>

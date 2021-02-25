@@ -2,7 +2,7 @@
 
 namespace ReviewPlugin\Constants\Items;
 
-abstract class Abstract_Enum
+abstract class Enum
 {
 	/**
 	 * @var array Enum Instances
@@ -30,7 +30,7 @@ abstract class Abstract_Enum
 	 * @param mixed $id
 	 * @return void
 	 */
-	public static function factory( string $class, $id ): Abstract_Enum {
+	public static function factory( string $class, $id ): Enum {
 		$ref = new \ReflectionClass( $class );
 		$consts = $ref->getConstants();
 		if ( !in_array( $id, $consts, true ) ) {

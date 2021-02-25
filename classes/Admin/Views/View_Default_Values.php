@@ -129,7 +129,7 @@ final class View_Default_Values {
 	 */
 	public function display( array $data ): void {
 		extract( $data );
-	?>
+?>
 
 	<div class="wrap">
 	<h1><?php echo self::TITLE; ?></h1>

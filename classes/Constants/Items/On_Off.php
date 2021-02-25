@@ -1,17 +1,17 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * On_Off
  *
  * On_Off values
  */
-final class On_Off extends Abstract_Enum {
+final class On_Off extends Enum {
 
-	const OFF	= 0;
-	const ON	= 1;
+	const OFF	= '0';
+	const ON	= '1';
 
 	private static $NAME = [
 		self::OFF	=> 'OFF',

@@ -9,9 +9,9 @@ use ReviewPlugin\Constants\Commons\Actions;
 use ReviewPlugin\Constants\Commons\Capabilities;
 
 /**
- * Admin_Settings
+ * Admin_Controller
  */
-final class Admin_Settings {
+final class Admin_Controller {
 
 	/**
 	 * @var string
@@ -88,7 +88,7 @@ final class Admin_Settings {
 			View_Welcome::SLUG,
 			array(
 				$this,
-				'controller_welcome'
+				'view_welcome'
 			),
 			'dashicons-admin-generic'
 		);
@@ -109,7 +109,7 @@ final class Admin_Settings {
 			View_Welcome::SLUG,
 			array(
 				$this,
-				'controller_welcome'
+				'view_welcome'
 			),
 			1
 		);
@@ -122,7 +122,7 @@ final class Admin_Settings {
 			View_Default_Values::SLUG,
 			array(
 				$this,
-				'controller_default_values'
+				'view_default_values'
 			),
 			2
 		);
@@ -177,20 +177,20 @@ final class Admin_Settings {
 	}
 
 	/**
-	 * controller_welcome
+	 * view_welcome
 	 *
 	 * @return void
 	 */
-	public function controller_welcome(): void {
+	public function view_welcome(): void {
 		new View_Welcome();
 	}
 
 	/**
-	 * controller_default_values
+	 * view_default_values
 	 *
 	 * @return void
 	 */
-	public function controller_default_values(): void {
+	public function view_default_values(): void {
 		new View_Default_Values();
 	}
 }

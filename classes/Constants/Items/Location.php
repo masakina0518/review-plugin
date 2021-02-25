@@ -1,19 +1,19 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * Location
  *
  * Location values
  */
-final class Location extends Abstract_Enum {
+final class Location extends Enum {
 
-	const BOTTOM	= 1;
-	const TOP		= 2;
-	const TOPBOTTOM	= 3;
-	const SHORTCODE = 4;
+	const BOTTOM	= '1';
+	const TOP		= '2';
+	const TOPBOTTOM	= '3';
+	const SHORTCODE = '4';
 
 	private static $NAME = [
 		self::BOTTOM	=> 'BOTTOM',

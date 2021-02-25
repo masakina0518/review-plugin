@@ -3,7 +3,8 @@
 namespace ReviewPlugin;
 
 use ReviewPlugin\Path_Manager;
-use ReviewPlugin\Admin\Admin_Settings;
+use ReviewPlugin\Admin\Admin_Controller;
+use ReviewPlugin\Front\Output_Controller;
 use ReviewPlugin\Admin\Custom\Fields\Review_Options;
 
 /**
@@ -28,8 +29,9 @@ final class Review_Plugin {
 	 * @return void
 	 */
 	public function initialize( Path_Manager $pm ): void {
-		new Admin_Settings( $pm );
+		new Admin_Controller( $pm );
 		new Review_Options( $pm );
+		new Output_Controller( $pm );
 	}
 }
 

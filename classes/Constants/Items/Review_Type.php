@@ -1,19 +1,19 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * Review_Type
  *
  * Review_Type values
  */
-final class Review_Type extends Abstract_Enum {
+final class Review_Type extends Enum {
 
-	const EDITOR_REVIEW_VISITOR_RATINGS	= 0;
-	const EDITOR_REVIEW					= 1;
-	const VISITOR_RATINGS				= 2;
-	const VISITOR_COMMENT_REVIEW		= 3;
+	const EDITOR_REVIEW_VISITOR_RATINGS	= '0';
+	const EDITOR_REVIEW					= '1';
+	const VISITOR_RATINGS				= '2';
+	const VISITOR_COMMENT_REVIEW		= '3';
 
 	private static $NAME = [
 		self::EDITOR_REVIEW_VISITOR_RATINGS	=> 'Editor Review + Visitor Ratings',

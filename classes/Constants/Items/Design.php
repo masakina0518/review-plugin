@@ -1,21 +1,21 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * Design
  *
  * Design values
  */
-final class Design extends Abstract_Enum {
+final class Design extends Enum {
 
-	const MINIMALIST	= 1;
-	const BOLD			= 2;
-	const MODERN		= 3;
-	const MODERN_B 		= 4;
-	const CLEAN 		= 5;
-	const MINIMALIST_B	= 6;
+	const MINIMALIST	= '1';
+	const BOLD			= '2';
+	const MODERN		= '3';
+	const MODERN_B 		= '4';
+	const CLEAN 		= '5';
+	const MINIMALIST_B	= '6';
 
 	private static $NAME = [
 		self::MINIMALIST	=> 'MINIMALIST',

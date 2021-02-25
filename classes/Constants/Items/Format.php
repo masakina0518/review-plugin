@@ -1,18 +1,18 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * Format
  *
  * Format values
  */
-final class Format extends Abstract_Enum {
+final class Format extends Enum {
 
-	const PERCENT	= 1;
-	const POINTS	= 2;
-	const STARS		= 3;
+	const PERCENT	= '1';
+	const POINTS	= '2';
+	const STARS		= '3';
 
 	private static $NAME = [
 		self::PERCENT	=> 'PERCENT',

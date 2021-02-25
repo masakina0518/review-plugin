@@ -42,8 +42,7 @@ spl_autoload_register( function ( $class ): void {
  * @return void
  */
 function initialize_review_plugin(): void {
-
-	if ( ! defined( 'ABSPATH' ) ) {
+	if ( !defined( 'ABSPATH' ) ) {
 		return;
 	}
 	$plugin_dir = dirname( __FILE__ );

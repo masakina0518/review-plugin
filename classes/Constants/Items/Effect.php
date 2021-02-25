@@ -1,18 +1,18 @@
 <?php
 namespace ReviewPlugin\Constants\Items;
 
-use ReviewPlugin\Constants\Items\Abstract_Enum;
+use ReviewPlugin\Constants\Items\Enum;
 
 /**
  * Effect
  *
  * Effect values
  */
-final class Effect extends Abstract_Enum {
+final class Effect extends Enum {
 
-	const NONE			= 1;
-	const INCREMENTAL	= 2;
-	const FADE_IN		= 3;
+	const NONE			= '1';
+	const INCREMENTAL	= '2';
+	const FADE_IN		= '3';
 
 	private static $NAME = [
 		self::NONE			=> 'NONE',
