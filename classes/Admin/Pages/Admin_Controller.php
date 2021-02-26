@@ -1,10 +1,10 @@
 <?php
 
-namespace ReviewPlugin\Admin;
+namespace ReviewPlugin\Admin\Pages;
 
 use ReviewPlugin\Path_Manager;
-use ReviewPlugin\Admin\Views\View_Default_Values;
-use ReviewPlugin\Admin\Views\View_Welcome;
+use ReviewPlugin\Admin\Pages\Views\View_Default_Values;
+use ReviewPlugin\Admin\Pages\Views\View_Welcome;
 use ReviewPlugin\Constants\Commons\Actions;
 use ReviewPlugin\Constants\Commons\Capabilities;
 

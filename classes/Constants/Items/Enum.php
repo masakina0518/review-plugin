@@ -26,20 +26,20 @@ abstract class Enum
 	/**
 	 * factory
 	 *
-	 * @param string $class
+	 * @param string $clazz
 	 * @param mixed $id
 	 * @return void
 	 */
-	public static function factory( string $class, $id ): Enum {
-		$ref = new \ReflectionClass( $class );
+	public static function factory( string $clazz_name, $id ): Enum {
+		$ref = new \ReflectionClass( $clazz_name );
 		$consts = $ref->getConstants();
 		if ( !in_array( $id, $consts, true ) ) {
 			throw new \InvalidArgumentException;
 		}
-		if( isset( self::$instances[$class.$id] ) ) {
-			return self::$instances[$class.$id];
+		if( isset( self::$instances[$clazz_name.$id] ) ) {
+			return self::$instances[$clazz_name.$id];
 		}
-		return self::$instances[$class.$id] = new $class( $id );
+		return self::$instances[$clazz_name.$id] = new $clazz_name( $id );
 	}
 
 	/**
@@ -48,12 +48,12 @@ abstract class Enum
 	 * @return array
 	 */
 	public static function getEnums(): array {
-		$class_name = get_called_class();
-		$ref = new \ReflectionClass( $class_name );
+		$clazz_name = get_called_class();
+		$ref = new \ReflectionClass( $clazz_name );
 		$contains = $ref->getConstants();
 		$enums = [];
 		foreach ( $contains as $val ) {
-			$enums[] = self::factory( $class_name, $val );
+			$enums[] = self::factory( $clazz_name, $val );
 		}
 		return $enums;
 	}
@@ -68,16 +68,17 @@ abstract class Enum
 	}
 
     /**
-     * equeals
+     * equals
      *
      * @param mixed $id
      * @return bool
      */
-	public function equeals( $id ): bool {
-		if ( !isset( self::$instances[$id]) ) {
-			return false;
+	public function equals( $id ): bool {
+		$clazz_name = get_class( $this );
+		if ( !isset( self::$instances[$clazz_name.$id]) ) {
+			self::factory( $clazz_name, $id );
 		}
-		if ( self::$instances[$id]->getId() === $this->getId() ) {
+		if ( self::$instances[$clazz_name.$id]->getId() === $this->getId() ) {
 			return true;
 		}
 		return false;

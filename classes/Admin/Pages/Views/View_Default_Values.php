@@ -1,7 +1,8 @@
 <?php
 
-namespace ReviewPlugin\Admin\Views;
+namespace ReviewPlugin\Admin\Pages\Views;
 
+use ReviewPlugin\Constants\Forms\Default_Values;
 use ReviewPlugin\Constants\Fields\Options;
 use ReviewPlugin\Constants\Items\Format;
 use ReviewPlugin\Constants\Items\Location;
@@ -33,24 +34,7 @@ final class View_Default_Values {
 	/**
 	 * @var array
 	 */
-	private $form_default_values = [
-		Options::FORMAT => Format::PERCENT,
-		Options::LOCATION => Location::BOTTOM,
-		Options::DESIGN => Design::MINIMALIST,
-		Options::EFFECT => Effect::NONE,
-		Options::SKIN => Skin::LIGHT,
-		Options::COLOR => '',
-		Options::USE_POST_TITLE => On_Off::OFF,
-		Options::USE_FEATURED_IMAGE => On_Off::OFF,
-		Options::SCORE_SUBTITLE => '',
-		Options::POSI_TITLE => '',
-		Options::NEGA_TITLE => '',
-		Options::AFFILI_BLOCK_TITLE => '',
-		Options::CONCLUSION_TITLE => '',
-		Options::GALLERY_BLOCK_TITLE => '',
-		Options::CRITERIAS => ['aaaa', 'bbbb', 'ccccc' ],
-		Options::CRITERIA_SCORES => [ 0, 0, 0 ],
-	];
+	const FORM_DEFAULT_VALUES = Default_Values::DEFAILT_VALUES;
 
 	/**
 	 * __construct
@@ -69,8 +53,8 @@ final class View_Default_Values {
 	 * @return array
 	 */
 	private function initialize( array $data ): array {
-		$data['form'] = $this->form_default_values;
-		foreach (  $this->form_default_values as $field => $value ) {
+		$data['form'] = self::FORM_DEFAULT_VALUES;
+		foreach ( self::FORM_DEFAULT_VALUES as $field => $value ) {
 			if( $current_val = get_option( $field ) ) {
 				$data['form'][$field] = $current_val;
 			}
@@ -96,7 +80,7 @@ final class View_Default_Values {
 			check_admin_referer( $this->nonce_field );
 			foreach ( $data['form'] as $field => $value ) {
 				/* In the case not set value, to change at default value. */
-				$update_val = $this->form_default_values[$field];
+				$update_val = self::FORM_DEFAULT_VALUES[$field];
 				if ( array_key_exists( $field, $post_data ) ) {
 					$update_val = $post_data[$field];
 				}

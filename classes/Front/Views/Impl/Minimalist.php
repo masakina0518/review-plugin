@@ -2,6 +2,7 @@
 
 namespace ReviewPlugin\Front\Views\Impl;
 
+use ReviewPlugin\Constants\Fields\Post_Meta;
 use ReviewPlugin\Front\Views\View;
 
 /**
@@ -17,7 +18,7 @@ final class Minimalist implements View {
 	/**
 	 * @inheritDoc
 	 */
-	public function create(): string {
+	public function create( array $data ): string {
 		ob_start(
 			array(
 			$this ,
@@ -26,9 +27,14 @@ final class Minimalist implements View {
 		);
 ?>
 
-		<div>
-			<p>It's like comparing apples to oranges.</p>
-		</div>
+	<div>
+		<h2>Rating</h2>
+		<?php foreach ( $data[Post_Meta::CRITERIAS] as $key => $value ): ?>
+			<div>
+				<span><?php echo $value; ?></span>：<span><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></span>
+			</div>
+		<?php endforeach; ?>
+	</div>
 
 <?php
 		$output = ob_get_contents();

@@ -15,7 +15,8 @@ interface View {
 	/**
 	 * create
 	 *
+	 * @param array $data
 	 * @return string
 	 */
-	function create(): string;
+	function create( array $data): string;
 }

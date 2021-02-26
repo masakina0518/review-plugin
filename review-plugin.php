@@ -45,8 +45,7 @@ function initialize_review_plugin(): void {
 	if ( !defined( 'ABSPATH' ) ) {
 		return;
 	}
-	$plugin_dir = dirname( __FILE__ );
-	new \ReviewPlugin\Review_Plugin( $plugin_dir );
+	\ReviewPlugin\Review_Plugin::getInstance( dirname( __FILE__ ) );
 }
 
 initialize_review_plugin();

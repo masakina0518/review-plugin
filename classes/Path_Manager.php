@@ -8,11 +8,6 @@ namespace ReviewPlugin;
 final class Path_Manager {
 
 	/**
-	 * @var Path_Manager
-	 */
-	private static $instance;
-
-	/**
 	 * @var string
 	 */
 	private $abspath;
@@ -25,18 +20,6 @@ final class Path_Manager {
 	function __construct( string $abspath ) {
 		$this->abspath = $abspath . '/';
 	}
-
-	/**
-	 * getInstance
-	 *
-	 * @return void
-	 */
-	public static function getInstance( $plugin_dir ): Path_Manager {
-        if ( !isset( self::$instance ) ) {
-            self::$instance = new Path_Manager( $plugin_dir );
-        }
-        return self::$instance;
-    }
 
 	/**
 	 * getAbsPath
@@ -53,7 +36,7 @@ final class Path_Manager {
 	 * @return string
 	 */
 	public function getAssetsPath(): string {
-		return $this->abspath . 'assets/';
+		return $this->getAbsPath() . 'assets/';
 	}
 
 	/**
@@ -63,7 +46,7 @@ final class Path_Manager {
 	 * @return string
 	 */
 	public function getAdminStylePath( string $name ): string {
-		return plugin_dir_url( $this->abspath . 'assets/admin/css/*') . $name . '.css';
+		return plugin_dir_url( $this->getAssetsPath() . 'admin/css/*') . $name . '.css';
 	}
 
 	/**
@@ -73,7 +56,7 @@ final class Path_Manager {
 	 * @return string
 	 */
 	public function getAdminScriptPath( string $name ): string {
-		return plugin_dir_url( $this->abspath . 'assets/admin/js/*') . $name . '.js';
+		return plugin_dir_url( $this->getAssetsPath() . 'admin/js/*') . $name . '.js';
 	}
 
 }

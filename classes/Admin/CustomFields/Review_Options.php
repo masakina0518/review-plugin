@@ -1,8 +1,9 @@
 <?php
 
-namespace ReviewPlugin\Admin\Custom\Fields;
+namespace ReviewPlugin\Admin\CustomFields;
 
 use ReviewPlugin\Path_Manager;
+use ReviewPlugin\Constants\Forms\Default_Values;
 use ReviewPlugin\Constants\Commons\Actions;
 use ReviewPlugin\Constants\Fields\Post_Meta;
 use ReviewPlugin\Constants\Items\Design;
@@ -32,39 +33,7 @@ final class Review_Options {
 	/**
 	 * @var array
 	 */
-	private $form_default_values = [
-		Post_Meta::ENABLE_REVIEW => On_Off::OFF,
-		Post_Meta::USE_POST_TITLE => On_Off::OFF,
-		Post_Meta::REVIEW_TYPE => Review_Type::EDITOR_REVIEW_VISITOR_RATINGS,
-		Post_Meta::LOCATION => Location::BOTTOM,
-		Post_Meta::FORMAT => Format::PERCENT,
-		Post_Meta::SCORE_SUBTITLE => '',
-		Post_Meta::CONCLUSION_TITLE => '',
-		Post_Meta::CONCLUSION_CONTENTS => '',
-		Post_Meta::CRITERIAS => [],
-		Post_Meta::CRITERIA_SCORES => [],
-		Post_Meta::CRITERIA_FINAL_SCORE => '0',
-		Post_Meta::POSI_TITLE => '',
-		Post_Meta::POSI_POINTS => [ 'test1', 'test2' ],
-		Post_Meta::NEGA_TITLE => '',
-		Post_Meta::NEGA_POINTS => [ 'test3', 'test4' ],
-		Post_Meta::DESIGN => Design::BOLD,
-		Post_Meta::EFFECT => Effect::NONE,
-		Post_Meta::SKIN => Skin::LIGHT,
-		Post_Meta::COLOR => '',
-		Post_Meta::AFFILI_BLOCK_TITLE => '',
-		Post_Meta::AFFILI_TITLE => [ 'Amazon' ],
-		Post_Meta::AFFILI_URL => [ 'https://www.amazon.co.jp' ],
-		Post_Meta::SCHEMA_TYPE => Schema_Type::ORGANIZATION,
-		Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION => '',
-		Post_Meta::SCHEMA_PROPERTIE_SKU => '',
-		Post_Meta::SCHEMA_PROPERTIE_MPN => '',
-		Post_Meta::SCHEMA_PROPERTIE_ISBN => '',
-		Post_Meta::SCHEMA_PROPERTIE_BRAND => '',
-		Post_Meta::SCHEMA_PROPERTIE_DIRECTOR => '',
-		Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED => '',
-	];
-
+	CONST FORM_DEFAULT_VALUES = Default_Values::REVIEW_OPTIONS;
 	/**
 	 * __construct
 	 *
@@ -213,7 +182,7 @@ final class Review_Options {
 	 * @return void
 	 */
 	public function post( $post_id ): void {
-		$default = $this->form_default_values;
+		$default = self::FORM_DEFAULT_VALUES;
 		$post_data = stripslashes_deep( $_POST );
 		if ( $post_data ) {
 			foreach( $default as $field => $value ) {
@@ -234,7 +203,7 @@ final class Review_Options {
 	public function display(): void {
 		$form = $this->marge_postmeta_to_default(
 			$this->marge_options_to_default(
-				$this->form_default_values
+				self::FORM_DEFAULT_VALUES
 			),
 			get_the_ID()
 		);

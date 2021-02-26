@@ -1,6 +1,6 @@
 <?php
 
-namespace ReviewPlugin\Admin\Views;
+namespace ReviewPlugin\Admin\Pages\Views;
 
 /**
  * View_Welcome
