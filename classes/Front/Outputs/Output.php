@@ -13,13 +13,24 @@ interface Output {
 	 * __construct
 	 *
 	 * @param View $view
+	 * @param string $post_id
 	 */
-	function __construct( View $view );
+	function __construct( View $view, string $post_id );
 
 	/**
-	 * hooks
+	 * adjust
 	 *
-	 * @return void
+	 * @param $content
+	 * @return string
 	 */
-	public function hooks(): void;
+	public function adjust( string $content ): string;
+
+	/**
+	 * get_data
+	 *
+	 * @param string $post_id
+	 * @return array
+	 */
+	public function get_data( string $post_id ): array;
+
 }

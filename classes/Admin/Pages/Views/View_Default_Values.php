@@ -19,7 +19,7 @@ final class View_Default_Values {
 	/**
 	 * @var string
 	 */
-	const TITLE = 'Options';
+	const TITLE = 'Default Values';
 
 	/**
 	 * @var string

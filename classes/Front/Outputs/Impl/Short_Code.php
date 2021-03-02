@@ -2,11 +2,8 @@
 
 namespace ReviewPlugin\Front\Outputs\Impl;
 
-use ReviewPlugin\Admin\CustomFields\Review_Options;
-use ReviewPlugin\Constants\Fields\Post_Meta;
 use ReviewPlugin\Constants\Forms\Default_Values;
-use ReviewPlugin\Constants\Items\Enum;
-use ReviewPlugin\Constants\Items\On_Off;
+use ReviewPlugin\Front\Outputs\Commons\Output_Methods;
 use ReviewPlugin\Front\Outputs\Output;
 use ReviewPlugin\Front\Views\View;
 
@@ -15,10 +12,17 @@ use ReviewPlugin\Front\Views\View;
  */
 final class Short_Code implements Output {
 
+	use Output_Methods;
+
 	/**
 	 * @var View
 	 */
 	private $view;
+
+	/**
+	 * @var $post_id
+	 */
+	private $post_id;
 
 	/**
 	 * @var string
@@ -26,64 +30,19 @@ final class Short_Code implements Output {
 	const NAME = 'review_plugin_shortcode';
 
 	/**
-	 * @var array
+	 * @inheritDoc
 	 */
-	const REVIEW_OPTIONS = Default_Values::REVIEW_OPTIONS;
-
-	/**
-	* @inheritDoc
-	*/
-	function __construct( View $view ) {
+	function __construct( View $view, string $post_id ) {
 		$this->view = $view;
-		$this->hooks();
+		$this->post_id = $post_id;
 	}
 
 	/**
 	* @inheritDoc
 	*/
-	public function hooks(): void {
-		add_shortcode(
-			self::NAME,
-			array(
-				$this,
-				'create'
-			)
-		);
-	}
-
-	/**
-	 * create
-	 *
-	 * @param mixed $attrs
-	 * @return void
-	 */
-	public function create( $attrs ): string {
-		$data = [];
-		$output = '';
-		$post_id = get_the_ID();
-		$attrs = shortcode_atts(
-			[],
-			$attrs
-		);
-
-		foreach ( self::REVIEW_OPTIONS as $field => $value ) {
-			// TODO:DBを直接いじられた場合の対応を検討したほうが良い
-			$data[$field] = $value;
-			$postmeta_val = get_post_meta( $post_id, $field, true );
-			// Give priority to postmeta value
-			if ( !is_null( $postmeta_val ) && !is_bool( $postmeta_val ) && '' !== $postmeta_val ) {
-				$data[$field] = $postmeta_val;
-			}
-		}
-
-		$enable_review_enum = Enum::factory(
-			On_Off::class,
-			$data[Post_Meta::ENABLE_REVIEW]
-		);
-		if ( $enable_review_enum->equals( On_Off::ON ) ) {
-			$output = $this->view->create( $data );
-		}
-		return $output;
+	public function adjust( string $content ): string {
+		$data = $this->get_data( $this->post_id );
+		return $content.$this->view->create( $data );
 	}
 }
 

@@ -30,5 +30,11 @@ final class Actions {
 	 * @var string
 	 */
 	const ADMIN_ENQUEUE_SCRIPTS = 'admin_enqueue_scripts';
+
+	/**
+	 * @var string
+	 */
+	const THE_CONTENT = 'the_content';
+
 }
 

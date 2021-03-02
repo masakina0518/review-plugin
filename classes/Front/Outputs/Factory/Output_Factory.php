@@ -22,22 +22,22 @@ class Output_Factory {
 	 * @param View $view
 	 * @return Output
 	 */
-	public static function create( Location $location, View $view ): Output {
+	public static function create( Location $location, View $view, string $post_id ): Output {
 		switch ( $location->getId() ) {
 			case Location::BOTTOM:
-				return new Bottom( $view );
+				return new Bottom( $view, $post_id );
 				break;
 
 			case Location::TOP:
-				return new Top( $view );
+				return new Top( $view, $post_id );
 				break;
 
 			case Location::TOPBOTTOM:
-				return new Top_Bottom( $view );
+				return new Top_Bottom( $view, $post_id );
 				break;
 
 			case Location::SHORTCODE:
-				return new Short_Code( $view );
+				return new Short_Code( $view, $post_id );
 				break;
 
 			default:

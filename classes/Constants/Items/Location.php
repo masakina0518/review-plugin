@@ -22,6 +22,11 @@ final class Location extends Enum {
 		self::SHORTCODE => 'SHORTCODE',
 	];
 
+	private static $OUTPUT_GROUP = [
+		'contents'	=> [self::BOTTOM, self::TOP, self::TOPBOTTOM],
+		'shortcode'		=> [self::SHORTCODE]
+	];
+
 	/**
 	 * @var string Name
 	 */
@@ -45,4 +50,30 @@ final class Location extends Enum {
 	public function getName(): string {
 		return $this->name;
 	}
+
+	/**
+	 * isShortcode
+	 *
+	 * @return boolean
+	 */
+	public function is_shortcode(): bool {
+		if ( in_array( $this->getId(), self::$OUTPUT_GROUP['shortcode'], true ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * isContents
+	 *
+	 * @return boolean
+	 */
+	public function is_contents(): bool {
+		if ( in_array( $this->getId(), self::$OUTPUT_GROUP['contents'], true ) ) {
+			return true;
+		}
+		return false;
+	}
+
+
 }
