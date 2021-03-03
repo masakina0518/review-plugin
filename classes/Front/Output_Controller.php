@@ -21,6 +21,11 @@ use ReviewPlugin\Path_Manager;
 final class Output_Controller {
 
 	/**
+	 * @var string
+	 */
+	const STYLE_NAME = 'review_plugin_front';
+
+	/**
 	 * @var Path_Manager
 	 */
 	private $pm;
@@ -55,6 +60,28 @@ final class Output_Controller {
 			array(
 				$this,
 				'insert_into_content'
+			)
+		);
+		/** style */
+		add_action(
+			Actions::WP_ENQUEUE_SCRIPTS,
+			array(
+				$this,
+				'style'
+			)
+		);
+	}
+
+	/**
+	 * style
+	 *
+	 * @return void
+	 */
+	public function style(): void {
+		wp_enqueue_style(
+			self::STYLE_NAME,
+			$this->pm->getFrontStylePath(
+				self::STYLE_NAME
 			)
 		);
 	}
@@ -135,7 +162,11 @@ final class Output_Controller {
 			$post_id,
 			Post_Meta::LOCATION,
 			true
-		) ?? Default_Values::REVIEW_OPTIONS[Post_Meta::LOCATION];
+		);
+		// TODO:なんとかしたい
+		if ( is_null( $value ) || is_bool( $value ) || '' === $value ) {
+			$value = Default_Values::REVIEW_OPTIONS[Post_Meta::LOCATION];
+		}
 		return Enum::factory(
 			Location::class,
 			$value
@@ -154,7 +185,11 @@ final class Output_Controller {
 			$post_id,
 			Post_Meta::DESIGN,
 			true
-		) ?? Default_Values::REVIEW_OPTIONS[Post_Meta::DESIGN];
+		);
+		// TODO:なんとかしたい
+		if ( is_null( $value ) || is_bool( $value ) || '' === $value ) {
+			$value = Default_Values::REVIEW_OPTIONS[Post_Meta::DESIGN];
+		}
 		$view =  View_Factory::create(
 			Enum::factory(
 				Design::class,

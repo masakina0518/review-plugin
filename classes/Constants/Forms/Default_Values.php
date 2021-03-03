@@ -46,6 +46,7 @@ final class Default_Values {
 	CONST REVIEW_OPTIONS = [
 		Post_Meta::ENABLE_REVIEW => On_Off::OFF,
 		Post_Meta::USE_POST_TITLE => On_Off::OFF,
+		Post_Meta::POST_TITLE => '',
 		Post_Meta::REVIEW_TYPE => Review_Type::EDITOR_REVIEW_VISITOR_RATINGS,
 		Post_Meta::LOCATION => Location::BOTTOM,
 		Post_Meta::FORMAT => Format::PERCENT,

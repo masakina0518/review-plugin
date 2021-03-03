@@ -59,5 +59,15 @@ final class Path_Manager {
 		return plugin_dir_url( $this->getAssetsPath() . 'admin/js/*') . $name . '.js';
 	}
 
+	/**
+	 * getFrontStylePath
+	 *
+	 * @param string $name
+	 * @return string
+	 */
+	public function getFrontStylePath( string $name ): string {
+		return plugin_dir_url( $this->getAssetsPath() . 'front/css/*') . $name . '.css';
+	}
+
 }
 

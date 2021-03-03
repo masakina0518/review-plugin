@@ -34,6 +34,11 @@ final class Actions {
 	/**
 	 * @var string
 	 */
+	const WP_ENQUEUE_SCRIPTS = 'wp_enqueue_scripts';
+
+	/**
+	 * @var string
+	 */
 	const THE_CONTENT = 'the_content';
 
 }

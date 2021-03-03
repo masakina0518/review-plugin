@@ -35,7 +35,8 @@ final class Top implements Output {
 	* @inheritDoc
 	*/
 	public function adjust( string $content ): string {
-		return 'Top'. $content;
+		$data = $this->get_data( $this->post_id );
+		return $this->view->create( $data ).$content;
 	}
 }
 

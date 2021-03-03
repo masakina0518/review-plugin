@@ -56,6 +56,11 @@ final class Post_Meta {
 	 */
 	const USE_POST_TITLE = Field_Prefix::POSTMETA.'use_post_title';
 
+	/**
+	 * @var string
+	 */
+	const POST_TITLE = Field_Prefix::POSTMETA.'post_title';
+
 	// /**
 	//  * @var string
 	//  */

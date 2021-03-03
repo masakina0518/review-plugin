@@ -221,6 +221,7 @@ final class Review_Options {
 			<h2>GENERAL</h2>
 			<h4>USE POST TITLE</h4>
 			<label><input name="<?php echo Post_Meta::USE_POST_TITLE ?>" type="checkbox" value="<?php echo On_Off::ON ?>" <?php checked( On_Off::ON, $form[Post_Meta::USE_POST_TITLE] ); ?> /><?php echo $enum->getName() ?></label>
+			<input name="<?php echo Post_Meta::POST_TITLE ?>" type="text" id="<?php echo Post_Meta::POST_TITLE ?>" value="<?php echo $form[Post_Meta::POST_TITLE]; ?>" class="regular-text" />
 
 			<br>
 			<br>

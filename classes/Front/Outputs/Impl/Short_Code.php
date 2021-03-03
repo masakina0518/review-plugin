@@ -2,7 +2,6 @@
 
 namespace ReviewPlugin\Front\Outputs\Impl;
 
-use ReviewPlugin\Constants\Forms\Default_Values;
 use ReviewPlugin\Front\Outputs\Commons\Output_Methods;
 use ReviewPlugin\Front\Outputs\Output;
 use ReviewPlugin\Front\Views\View;
@@ -42,7 +41,7 @@ final class Short_Code implements Output {
 	*/
 	public function adjust( string $content ): string {
 		$data = $this->get_data( $this->post_id );
-		return $content.$this->view->create( $data );
+		return $this->view->create( $data );
 	}
 }
 
