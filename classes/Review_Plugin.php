@@ -6,7 +6,7 @@ use ReviewPlugin\Path_Manager;
 use ReviewPlugin\Front\Output_Controller;
 use ReviewPlugin\Admin\Pages\Admin_Controller;
 use ReviewPlugin\Admin\CustomFields\Review_Options;
-use ReviewPlugin\Admin\Widgets\Review_lists;
+use ReviewPlugin\Admin\Widgets\Widgets_Controller;
 
 /**
  * Review_Plugin
@@ -50,7 +50,7 @@ final class Review_Plugin {
 		new Admin_Controller( $pm );
 		new Review_Options( $pm );
 		new Output_Controller( $pm );
-		new Review_lists( $pm );
+		new Widgets_Controller( $pm );
 	}
 
 	/**

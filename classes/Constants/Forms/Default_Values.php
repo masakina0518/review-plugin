@@ -76,7 +76,5 @@ final class Default_Values {
 		Post_Meta::SCHEMA_PROPERTIE_DIRECTOR => '',
 		Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED => '',
 	];
-
-
 }
 

@@ -2,17 +2,13 @@
 
 namespace ReviewPlugin\Admin\Widgets;
 
+use ReviewPlugin\Admin\Widgets\Impl\Review_lists;
 use ReviewPlugin\Path_Manager;
 
 /**
- * Review_lists
+ * Widgets_Controller
  */
-final class Review_lists {
-
-	/**
-	 * @var string
-	 */
-	const TITLE = 'Review Lists';
+final class Widgets_Controller {
 
 	/**
 	 * @var Path_Manager
@@ -36,6 +32,21 @@ final class Review_lists {
 	 * @return void
 	 */
 	public function hooks(): void {
+		add_action(
+			'widgets_init',
+			array(
+				$this,
+				'register'
+			)
+		);
 	}
 
+	/**
+	 * register
+	 *
+	 * @return void
+	 */
+	public function register(): void {
+		register_widget( Review_lists::class );
+	}
 }
