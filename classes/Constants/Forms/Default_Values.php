@@ -4,6 +4,7 @@ namespace ReviewPlugin\Constants\Forms;
 
 use ReviewPlugin\Constants\Fields\Options;
 use ReviewPlugin\Constants\Fields\Post_Meta;
+use ReviewPlugin\Constants\Fields\Widgets\Options_Review_Lists;
 use ReviewPlugin\Constants\Items\Design;
 use ReviewPlugin\Constants\Items\Effect;
 use ReviewPlugin\Constants\Items\Format;
@@ -12,6 +13,11 @@ use ReviewPlugin\Constants\Items\Review_Type;
 use ReviewPlugin\Constants\Items\Location;
 use ReviewPlugin\Constants\Items\Skin;
 use ReviewPlugin\Constants\Items\Schema_Type;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Date;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Design;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Order;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Score_Type;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Source;
 
 /**
  * Default_Values
@@ -75,6 +81,24 @@ final class Default_Values {
 		Post_Meta::SCHEMA_PROPERTIE_BRAND => '',
 		Post_Meta::SCHEMA_PROPERTIE_DIRECTOR => '',
 		Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED => '',
+	];
+
+	/**
+	 * @var array
+	 */
+	CONST WIDGESTS_REVIEW_LISTS = [
+		Options_Review_Lists::TITLE => 'タイトル',
+		Options_Review_Lists::AMOUNT => '5',
+		Options_Review_Lists::SOURCE => Widgets_Source::CATEGORIES,
+		Options_Review_Lists::SOURCE_CATEGORYIES => '',
+		Options_Review_Lists::SOURCE_TAGS => '',
+		Options_Review_Lists::SOURCE_POSTS => '',
+		Options_Review_Lists::SOURCE_CUSTOM_POST_TYPES => '',
+		Options_Review_Lists::CATEGORIES => '',
+		Options_Review_Lists::DATE => Widgets_Date::ALL_TIME,
+		Options_Review_Lists::DESIGN => Widgets_Design::MINIMAL,
+		Options_Review_Lists::ORDER => Widgets_Order::TOP_SCORES,
+		Options_Review_Lists::SCORE_TYPE => Widgets_Score_Type::EDIT_SCORES,
 	];
 }
 

@@ -25,6 +25,31 @@ final class Options_Review_Lists {
 	/**
 	 * @var string
 	 */
+	const SOURCE_CATEGORYIES = 'review_source_categoryies';
+
+	/**
+	 * @var string
+	 */
+	const SOURCE_TAGS = 'review_source_tags';
+
+	/**
+	 * @var string
+	 */
+	const SOURCE_POSTS = 'review_source_posts';
+
+	/**
+	 * @var string
+	 */
+	const SOURCE_CUSTOM_POST_TYPES = 'review_source_custom_post_types';
+
+	/**
+	 * @var string
+	 */
+	const CATEGORIES = 'categories';
+
+	/**
+	 * @var string
+	 */
 	const DATE = 'review_date';
 
 	/**

@@ -4,6 +4,12 @@ namespace ReviewPlugin\Admin\Widgets\Impl;
 
 use WP_Widget;
 use ReviewPlugin\Constants\Fields\Widgets\Options_Review_Lists;
+use ReviewPlugin\Constants\Forms\Default_Values;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Date;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Design;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Order;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Score_Type;
+use ReviewPlugin\Constants\Items\Widgets\Widgets_Source;
 
 /**
  * Review_lists
@@ -65,14 +71,65 @@ final class Review_lists extends WP_Widget {
 	 * @param array $instance データベースからの前回保存された値
 	 */
 	public function form( $instance ): void {
-		// 初期設定
-		$title = ! empty( $instance[Options_Review_Lists::TITLE] ) ? $instance[Options_Review_Lists::TITLE] : __( '新しいタイトル', 'text_domain' );
+		$form = [];
+		$form = $this->marge_options_to_default( $form, $instance );
 ?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( Options_Review_Lists::TITLE ); ?>">タイトル:</label>
-			<input class="widefat" id="<?php echo $this->get_field_id( Options_Review_Lists::TITLE ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::TITLE ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+			<input class="widefat" id="<?php echo $this->get_field_id( Options_Review_Lists::TITLE ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::TITLE ); ?>" type="text" value="<?php echo esc_attr( $form[Options_Review_Lists::TITLE] ); ?>">
 		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::AMOUNT ); ?>">Amount</label>
+			<input class="widefat" id="<?php echo $this->get_field_id( Options_Review_Lists::AMOUNT ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::AMOUNT ); ?>" type="text" value="<?php echo esc_attr( $form[Options_Review_Lists::AMOUNT] ); ?>">
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::SOURCE ); ?>">Revie Sources</label>
+			<select id="<?php echo $this->get_field_id( Options_Review_Lists::SOURCE ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::SOURCE ); ?>">
+				<?php foreach( Widgets_Source::getEnums() as $enum ): ?>
+					<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Options_Review_Lists::SOURCE] ); ?> ><?php echo $enum->getName(); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::DATE ); ?>">Review Date</label>
+			<select id="<?php echo $this->get_field_id( Options_Review_Lists::DATE ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::DATE ); ?>">
+				<?php foreach( Widgets_Date::getEnums() as $enum ): ?>
+					<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Options_Review_Lists::DATE] ); ?> ><?php echo $enum->getName(); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::ORDER ); ?>">Order</label>
+			<select id="<?php echo $this->get_field_id( Options_Review_Lists::ORDER ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::ORDER ); ?>">
+				<?php foreach( Widgets_Order::getEnums() as $enum ): ?>
+					<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Options_Review_Lists::ORDER] ); ?> ><?php echo $enum->getName(); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::DESIGN ); ?>">Design</label>
+			<select id="<?php echo $this->get_field_id( Options_Review_Lists::DESIGN ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::DESIGN ); ?>">
+				<?php foreach( Widgets_Design::getEnums() as $enum ): ?>
+					<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Options_Review_Lists::DESIGN] ); ?> ><?php echo $enum->getName(); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( Options_Review_Lists::SCORE_TYPE ); ?>">Score Type</label>
+			<select id="<?php echo $this->get_field_id( Options_Review_Lists::SCORE_TYPE ); ?>" name="<?php echo $this->get_field_name( Options_Review_Lists::SCORE_TYPE ); ?>">
+				<?php foreach( Widgets_Score_Type::getEnums() as $enum ): ?>
+					<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Options_Review_Lists::SCORE_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</p>
+
 
 <?php
 	}
@@ -92,5 +149,19 @@ final class Review_lists extends WP_Widget {
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
 		return $instance;
+	}
+
+	/**
+	 * marge_options_to_default
+	 *
+	 * @param array $data
+	 * @param array $instance
+	 * @return array
+	 */
+	private function marge_options_to_default( array $data, array $instance ): array {
+		foreach ( Default_Values::WIDGESTS_REVIEW_LISTS as $field => $value ) {
+			$data[$field] = ! empty( $instance[$field] ) ? $instance[$field] : $value;
+		}
+		return $data;
 	}
 }
