@@ -55,11 +55,9 @@ final class Review_lists extends WP_Widget {
 	 * @param array $instance データベースの保存値
 	 */
 	public function widget( $args, $instance ): void {
+		$html = $this->create_widget_view( $instance );
 		echo $args['before_widget'];
-		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
-		}
-		echo __( '世界のみなさん、こんにちは', 'text_domain' );
+		echo $html;
 		echo $args['after_widget'];
 	}
 
@@ -145,9 +143,10 @@ final class Review_lists extends WP_Widget {
 	 * @return array 保存される更新された安全な値
 	 */
 	public function update( $new_instance, $old_instance ): array {
-		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-
+		$instance = [];
+		foreach( Default_Values::WIDGESTS_REVIEW_LISTS as $field => $default_value) {
+			$instance[$field] = ( ! empty( $new_instance[$field] ) ) ? strip_tags( $new_instance[$field] ) : $default_value;
+		}
 		return $instance;
 	}
 
@@ -163,5 +162,23 @@ final class Review_lists extends WP_Widget {
 			$data[$field] = ! empty( $instance[$field] ) ? $instance[$field] : $value;
 		}
 		return $data;
+	}
+
+	/**
+	 * create_widget_view
+	 *
+	 * @param [type] $instance
+	 * @return string
+	 */
+	private function create_widget_view( $instance ): string {
+		$html = '';
+		if ( !isset( $instance ) ) {
+			return $html;
+		}
+
+		// TODO:ここにHTMLを記述する
+
+
+		return $html;
 	}
 }

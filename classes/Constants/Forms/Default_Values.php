@@ -42,8 +42,8 @@ final class Default_Values {
 		Options::AFFILI_BLOCK_TITLE => '',
 		Options::CONCLUSION_TITLE => '',
 		Options::GALLERY_BLOCK_TITLE => '',
-		Options::CRITERIAS => ['aaaa', 'bbbb', 'ccccc' ],
-		Options::CRITERIA_SCORES => [ 0, 0, 0 ],
+		Options::CRITERIAS => [],
+		Options::CRITERIA_SCORES => [],
 	];
 
 	/**

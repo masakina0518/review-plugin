@@ -279,21 +279,21 @@ final class Review_Options {
 				<?php foreach ( $form[Post_Meta::CRITERIAS] as $key => $value ): ?>
 					<div>
 						<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="regular-text" />
+						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" />
+						<br><br>
 					</div>
-					<br><br>
 				<?php endforeach; ?>
 
 				<script type="text/html" id="<?php echo Post_Meta::CRITERIAS; ?>_template">
 					<div>
 						<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
 						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="hidden"  value="0" class="regular-text" />
+						<br><br>
 					</div>
-					<br><br>
 				</script>
 			</div>
 
-			<input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="regular-text" />
+			Final Score <input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="small-text" />
 
 			<br>
 			<br>

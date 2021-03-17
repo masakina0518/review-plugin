@@ -3,8 +3,8 @@
 Plugin Name: Review plugin
 Plugin URI:
 Description: Review plugin
-Author: misclog
-Version: 0.1.0
+Author: kozo ogawa
+Version: 1.0.0
 Author URI: https://misc-log.com/
 Text Domain: review-plugin
 Domain Path: /languages/

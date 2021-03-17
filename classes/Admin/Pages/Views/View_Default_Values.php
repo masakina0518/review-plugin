@@ -115,7 +115,7 @@ final class View_Default_Values {
 		extract( $data );
 ?>
 
-	<div class="wrap">
+	<div id="<?php echo View_Default_Values::SLUG ?>_wrappar">
 	<h1><?php echo self::TITLE; ?></h1>
 
 	<?php if (isset( $success ) && $success ): ?>
@@ -231,22 +231,25 @@ final class View_Default_Values {
 
 		<h2>Criterias</h2>
 		<br>
-		<div id="<?php echo Options::CRITERIAS; ?>">
+		<div id="<?php echo Options::CRITERIAS; ?>_form">
 			<?php foreach (  $form[Options::CRITERIAS] as $key => $value ): ?>
-				<div>
+				<div class="<?php echo Options::CRITERIAS; ?>_box">
 					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Options::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="regular-text" />
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="text" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="small-text" readonly="readonly" />
+					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete">
+					<br><br>
 				</div>
-				<br><br>
 			<?php endforeach; ?>
 
 			<script type="text/html" id="<?php echo Options::CRITERIAS; ?>_template">
-				<div>
+				<div class="<?php echo Options::CRITERIAS; ?>_box">
 					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
-					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="hidden"  value="0" class="regular-text" />
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="text" value="0" class="small-text" readonly="readonly" />
+					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete">
+					<br><br>
 				</div>
-				<br><br>
 			</script>
+			<input type="button" id="<?php echo Options::CRITERIAS ?>_add" class="button button-primary" value="Add">
 		</div>
 
 
