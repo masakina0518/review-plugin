@@ -235,8 +235,8 @@ final class View_Default_Values {
 			<?php foreach (  $form[Options::CRITERIAS] as $key => $value ): ?>
 				<div class="<?php echo Options::CRITERIAS; ?>_box">
 					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Options::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="text" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="small-text" readonly="readonly" />
-					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete">
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="number" id="<?php echo Options::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Options::CRITERIA_SCORES][$key]; ?>" class="small-text"  min="0" max="100" readonly="readonly" />
+					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete" />
 					<br><br>
 				</div>
 			<?php endforeach; ?>
@@ -244,8 +244,8 @@ final class View_Default_Values {
 			<script type="text/html" id="<?php echo Options::CRITERIAS; ?>_template">
 				<div class="<?php echo Options::CRITERIAS; ?>_box">
 					<input name="<?php echo Options::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
-					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="text" value="0" class="small-text" readonly="readonly" />
-					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete">
+					<input name="<?php echo Options::CRITERIA_SCORES.'[]'; ?>" type="number" value="0" class="small-text" min="0" max="100" readonly="readonly" />
+					<input type="button" class="<?php echo Options::CRITERIAS ?>_delete button button-primary" value="Delete" />
 					<br><br>
 				</div>
 			</script>

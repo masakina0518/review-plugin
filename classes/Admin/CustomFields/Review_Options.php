@@ -137,6 +137,12 @@ final class Review_Options {
 				'underscore'
 			)
 		);
+		wp_enqueue_script(
+			'jquery-ui-tabs',
+			array(
+				'jquery'
+			)
+		);
 	}
 
 	/**
@@ -208,7 +214,7 @@ final class Review_Options {
 			get_the_ID()
 		);
 ?>
-
+	<div id="<?php echo Review_Options::ID ?>_wrappar">
 		<h2>ENABLE REVIEW</h2>
 		<?php foreach ( On_Off::getEnums() as $enum ): ?>
 			<label><input name="<?php echo Post_Meta::ENABLE_REVIEW ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::ENABLE_REVIEW] ); ?> /><?php echo $enum->getName() ?></label>
@@ -217,7 +223,17 @@ final class Review_Options {
 
 		<hr>
 
-		<div>
+		<div class="nav-tab-wrapper">
+			<ul class="nav-tab-container">
+				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_general">GENERAL</a></li>
+				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_fields">FIELDS</a></li>
+				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_design">DESIGN</a></li>
+				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_affiliate">AFFILIATE</a></li>
+				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_schema_type">SCHEMA TYPE</a></li>
+			</ul>
+		</div>
+
+		<div id="<?php echo Review_Options::ID ?>_general">
 			<h2>GENERAL</h2>
 			<h4>USE POST TITLE</h4>
 			<label><input name="<?php echo Post_Meta::USE_POST_TITLE ?>" type="checkbox" value="<?php echo On_Off::ON ?>" <?php checked( On_Off::ON, $form[Post_Meta::USE_POST_TITLE] ); ?> /><?php echo $enum->getName() ?></label>
@@ -266,20 +282,20 @@ final class Review_Options {
 			<label for="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>">Conclusion Contents</label>
 			<textarea name="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" id="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" class="regular-text"><?php echo $form[Post_Meta::CONCLUSION_CONTENTS]; ?></textarea>
 
+			<hr>
 		</div>
 
-		<hr>
-
-		<div>
+		<div id="<?php echo Review_Options::ID ?>_fields">
 			<h2>FIELDS</h2>
 
 			<h4>Criterias</h4>
 			<br>
-			<div id="<?php echo Post_Meta::CRITERIAS; ?>">
+			<div id="<?php echo Post_Meta::CRITERIAS; ?>_form">
 				<?php foreach ( $form[Post_Meta::CRITERIAS] as $key => $value ): ?>
 					<div>
 						<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" />
+						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" min="0" max="100" />
+						<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
 						<br><br>
 					</div>
 				<?php endforeach; ?>
@@ -287,13 +303,18 @@ final class Review_Options {
 				<script type="text/html" id="<?php echo Post_Meta::CRITERIAS; ?>_template">
 					<div>
 						<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
-						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="hidden"  value="0" class="regular-text" />
+						<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" value="0" class="small-text" min="0" max="100" />
+						<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
 						<br><br>
 					</div>
 				</script>
-			</div>
 
-			Final Score <input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="text" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="small-text" />
+				<div id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>_form">
+					<label for="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>">Final Score</label>&nbsp;<input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="small-text" min="0" max="100" />
+					<br><br>
+				</div>
+				<input type="button" id="<?php echo Post_Meta::CRITERIAS ?>_add" class="button button-primary" value="Add">
+			</div>
 
 			<br>
 			<br>
@@ -301,28 +322,53 @@ final class Review_Options {
 			<h4>Positives</h4>
 			<input name="<?php echo Post_Meta::POSI_TITLE ?>" type="text" id="<?php echo Post_Meta::POSI_TITLE ?>" value="<?php echo $form[Post_Meta::POSI_TITLE]; ?>" class="regular-text" />
 			<br><br>
-			<?php foreach ( $form[Post_Meta::POSI_POINTS] as $key => $value ): ?>
-				&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::POSI_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-				<br><br>
-			<?php endforeach; ?>
+			<div id="<?php echo Post_Meta::POSI_POINTS; ?>_form">
+				<?php foreach ( $form[Post_Meta::POSI_POINTS] as $key => $value ): ?>
+					<div>
+						＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::POSI_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+						<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
+						<br><br>
+					</div>
+				<?php endforeach; ?>
 
+				<script type="text/html" id="<?php echo Post_Meta::POSI_POINTS; ?>_template">
+					<div>
+						＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
+						<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
+						<br><br>
+					</div>
+				</script>
+				<input type="button" id="<?php echo Post_Meta::POSI_POINTS ?>_add" class="button button-primary" value="Add">
+			</div>
 			<br>
 			<br>
 
 			<h4>Negatives</h4>
 			<input name="<?php echo Post_Meta::NEGA_TITLE ?>" type="text" id="<?php echo Post_Meta::NEGA_TITLE ?>" value="<?php echo $form[Post_Meta::NEGA_TITLE]; ?>" class="regular-text" />
 			<br><br>
-			<?php foreach ( $form[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
-				&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::NEGA_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-				<br><br>
-			<?php endforeach; ?>
+			<div id="<?php echo Post_Meta::NEGA_POINTS; ?>_form">
+				<?php foreach ( $form[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
+					<div>
+						－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::NEGA_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+						<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
+						<br><br>
+					</div>
+				<?php endforeach; ?>
 
+				<script type="text/html" id="<?php echo Post_Meta::NEGA_POINTS; ?>_template">
+					<div>
+						－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
+						<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
+						<br><br>
+					</div>
+				</script>
+				<input type="button" id="<?php echo Post_Meta::NEGA_POINTS ?>_add" class="button button-primary" value="Add">
+			</div>
 
+			<hr>
 		</div>
 
-		<hr>
-
-		<div>
+		<div id="<?php echo Review_Options::ID ?>_design">
 			<h2>DESIGN</h2>
 
 			<h4>Design</h4>
@@ -350,11 +396,12 @@ final class Review_Options {
 			<label for="<?php echo Post_Meta::COLOR ?>">Accent Color</label>
 			<input name="<?php echo Post_Meta::COLOR ?>" type="text" id="<?php echo Post_Meta::COLOR ?>" value="<?php echo $form[Post_Meta::COLOR]; ?>" class="regular-text" />
 
+
+			<hr>
+
 		</div>
 
-		<hr>
-
-		<div>
+		<div id="<?php echo Review_Options::ID ?>_affiliate">
 			<h2>AFFILIATE</h2>
 
 			<h4>Affliate title</h4>
@@ -382,11 +429,12 @@ final class Review_Options {
 					<br><br>
 				</script>
 			</div>
+
+			<hr>
+
 		</div>
 
-		<hr>
-
-		<div>
+		<div id="<?php echo Review_Options::ID ?>_schema_type">
 			<h2>SCHEMA TYPE</h2>
 			<select name="<?php echo Post_Meta::SCHEMA_TYPE ?>" id="<?php echo Post_Meta::SCHEMA_TYPE ?>">
 				<?php foreach( Schema_Type::getEnums() as $enum ): ?>
@@ -429,9 +477,8 @@ final class Review_Options {
 
 				<br><br>
 			</div>
-
 		</div>
-
+	</div>
 <?php
 	}
 }
