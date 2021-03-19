@@ -18,6 +18,9 @@
         });
 
         $_wrapper.tabs();
+
+        $('#_review_plugin_color').wpColorPicker();
+
     });
 
     // TODO:実装みなおし
