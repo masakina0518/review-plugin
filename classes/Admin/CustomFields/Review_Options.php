@@ -147,7 +147,10 @@ final class Review_Options {
 			)
 		);
 		wp_enqueue_script(
-			'wp-color-picker'
+			'wp-color-picker',
+			array(
+				'jquery'
+			)
 		);
 	}
 
@@ -233,332 +236,339 @@ final class Review_Options {
 				</td>
 			</tr>
 		</table>
-		<div class="nav-tab-wrapper">
-			<ul class="nav-tab-container">
-				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_general">GENERAL</a></li>
-				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_fields">FIELDS</a></li>
-				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_design">DESIGN</a></li>
-				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_affiliate">AFFILIATE</a></li>
-				<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_schema_type">SCHEMA TYPE</a></li>
-			</ul>
-		</div>
-		<div id="<?php echo Review_Options::ID ?>_general">
+		<div id="<?php echo Review_Options::ID ?>_input_field">
+			<div class="nav-tab-wrapper">
+				<ul class="nav-tab-container">
+					<li><a class="nav-tab nav-tab-active" href="#<?php echo Review_Options::ID ?>_general">GENERAL</a></li>
+					<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_fields">FIELDS</a></li>
+					<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_design">DESIGN</a></li>
+					<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_affiliate">AFFILIATE</a></li>
+					<li><a class="nav-tab" href="#<?php echo Review_Options::ID ?>_schema_type">SCHEMA TYPE</a></li>
+				</ul>
+			</div>
+			<div id="<?php echo Review_Options::ID ?>_general">
 
-			<h1>GENERAL</h1>
-			<table class="form-table">
-				<tr>
-					<th>Use post title</th>
-					<td>
-						<fieldset>
-							<label><input name="<?php echo Post_Meta::USE_POST_TITLE ?>" type="checkbox" value="<?php echo On_Off::ON ?>" <?php checked( On_Off::ON, $form[Post_Meta::USE_POST_TITLE] ); ?> /><?php echo $enum->getName() ?></label>
-							<br>
-							<input name="<?php echo Post_Meta::POST_TITLE ?>" type="text" id="<?php echo Post_Meta::POST_TITLE ?>" value="<?php echo $form[Post_Meta::POST_TITLE]; ?>" class="regular-text" />
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Review Type</th>
-					<td>
-						<fieldset>
-							<select name="<?php echo Post_Meta::REVIEW_TYPE ?>" id="<?php echo Post_Meta::REVIEW_TYPE ?>">
-								<?php foreach( Review_Type::getEnums() as $enum ): ?>
-									<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Post_Meta::REVIEW_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
+				<h1>GENERAL</h1>
+				<table class="form-table">
+					<tr>
+						<th>Use post title</th>
+						<td>
+							<fieldset>
+								<label><input name="<?php echo Post_Meta::USE_POST_TITLE ?>" id="<?php echo Post_Meta::USE_POST_TITLE ?>" type="checkbox" value="<?php echo On_Off::ON ?>" <?php checked( On_Off::ON, $form[Post_Meta::USE_POST_TITLE] ); ?> /><?php echo $enum->getName() ?></label>
+								<br>
+								<input name="<?php echo Post_Meta::POST_TITLE ?>" type="text" id="<?php echo Post_Meta::POST_TITLE ?>" value="<?php echo $form[Post_Meta::POST_TITLE]; ?>" class="regular-text" />
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Review Type</th>
+						<td>
+							<fieldset>
+								<select name="<?php echo Post_Meta::REVIEW_TYPE ?>" id="<?php echo Post_Meta::REVIEW_TYPE ?>">
+									<?php foreach( Review_Type::getEnums() as $enum ): ?>
+										<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Post_Meta::REVIEW_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
+									<?php endforeach; ?>
+								</select>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Location</th>
+						<td>
+							<fieldset>
+								<?php foreach ( Location::getEnums() as $enum ): ?>
+									<label><input name="<?php echo Post_Meta::LOCATION ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::LOCATION] ); ?> /><?php echo $enum->getName() ?></label><br>
 								<?php endforeach; ?>
-							</select>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Location</th>
-					<td>
-						<fieldset>
-							<?php foreach ( Location::getEnums() as $enum ): ?>
-								<label><input name="<?php echo Post_Meta::LOCATION ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::LOCATION] ); ?> /><?php echo $enum->getName() ?></label><br>
-							<?php endforeach; ?>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Format</th>
-					<td>
-						<fieldset>
-							<?php foreach ( Format::getEnums() as $enum ): ?>
-								<label><input name="<?php echo Post_Meta::FORMAT ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::FORMAT] ); ?> /><?php echo $enum->getName() ?></label><br>
-							<?php endforeach; ?>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Score Subtitle</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::SCORE_SUBTITLE ?>" type="text" id="<?php echo Post_Meta::SCORE_SUBTITLE ?>" value="<?php echo $form[Post_Meta::SCORE_SUBTITLE]; ?>" class="regular-text" />
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Conclusion Title</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::CONCLUSION_TITLE ?>" type="text" id="<?php echo Post_Meta::CONCLUSION_TITLE ?>" value="<?php echo $form[Post_Meta::CONCLUSION_TITLE]; ?>" class="regular-text" />
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Conclusion Contents</th>
-					<td>
-						<fieldset>
-							<textarea name="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" id="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" class="regular-text" rows="10"><?php echo $form[Post_Meta::CONCLUSION_CONTENTS]; ?></textarea>
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</div>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Format</th>
+						<td>
+							<fieldset>
+								<?php foreach ( Format::getEnums() as $enum ): ?>
+									<label><input name="<?php echo Post_Meta::FORMAT ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::FORMAT] ); ?> /><?php echo $enum->getName() ?></label><br>
+								<?php endforeach; ?>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Score Subtitle</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::SCORE_SUBTITLE ?>" type="text" id="<?php echo Post_Meta::SCORE_SUBTITLE ?>" value="<?php echo $form[Post_Meta::SCORE_SUBTITLE]; ?>" class="regular-text" />
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Conclusion Title</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::CONCLUSION_TITLE ?>" type="text" id="<?php echo Post_Meta::CONCLUSION_TITLE ?>" value="<?php echo $form[Post_Meta::CONCLUSION_TITLE]; ?>" class="regular-text" />
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Conclusion Contents</th>
+						<td>
+							<fieldset>
+								<textarea name="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" id="<?php echo Post_Meta::CONCLUSION_CONTENTS ?>" class="regular-text" rows="10"><?php echo $form[Post_Meta::CONCLUSION_CONTENTS]; ?></textarea>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-		<div id="<?php echo Review_Options::ID ?>_fields">
-			<h1>FIELDS</h1>
+			<div id="<?php echo Review_Options::ID ?>_fields">
+				<h1>FIELDS</h1>
 
-			<table class="form-table">
-				<tr>
-					<th>Criterias</th>
-					<td>
-						<fieldset>
-							<div id="<?php echo Post_Meta::CRITERIAS; ?>_form">
-								<?php foreach ( $form[Post_Meta::CRITERIAS] as $key => $value ): ?>
-									<div>
-										<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIAS.$key ?>" value="<?php echo $value; ?>" />
-										<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" min="0" max="100" />
-										<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
+				<table class="form-table">
+					<tr>
+						<th>Criterias</th>
+						<td>
+							<fieldset>
+								<div id="<?php echo Post_Meta::CRITERIAS; ?>_form">
+									<?php foreach ( $form[Post_Meta::CRITERIAS] as $key => $value ): ?>
+										<div>
+											<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+											<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" min="0" max="100" />
+											<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									<?php endforeach; ?>
+
+									<script type="text/html" id="<?php echo Post_Meta::CRITERIAS; ?>_template">
+										<div>
+											<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" value="" class="regular-text" />
+											<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" value="0" class="small-text" min="0" max="100" />
+											<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									</script>
+
+									<div id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>_form">
+										<label for="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>">Final Score</label>&nbsp;<input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="small-text" min="0" max="100" />
 										<br><br>
 									</div>
-								<?php endforeach; ?>
-
-								<script type="text/html" id="<?php echo Post_Meta::CRITERIAS; ?>_template">
-									<div>
-										<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" value="" />
-										<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" value="0" class="small-text" min="0" max="100" />
-										<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />
-										<br><br>
-									</div>
-								</script>
-
-								<div id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>_form">
-									<label for="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>">Final Score</label>&nbsp;<input name="<?php echo Post_Meta::CRITERIA_FINAL_SCORE; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_FINAL_SCORE ?>" value="<?php echo $form[Post_Meta::CRITERIA_FINAL_SCORE]; ?>" class="small-text" min="0" max="100" />
-									<br><br>
+									<input type="button" id="<?php echo Post_Meta::CRITERIAS ?>_add" class="button button-primary" value="Add">
 								</div>
-								<input type="button" id="<?php echo Post_Meta::CRITERIAS ?>_add" class="button button-primary" value="Add">
-							</div>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Positives</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::POSI_TITLE ?>" type="text" id="<?php echo Post_Meta::POSI_TITLE ?>" value="<?php echo $form[Post_Meta::POSI_TITLE]; ?>" class="regular-text" />
-							<br><br>
-							<div id="<?php echo Post_Meta::POSI_POINTS; ?>_form">
-								<?php foreach ( $form[Post_Meta::POSI_POINTS] as $key => $value ): ?>
-									<div>
-										＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::POSI_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-										<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
-										<br><br>
-									</div>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Positives</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::POSI_TITLE ?>" type="text" id="<?php echo Post_Meta::POSI_TITLE ?>" value="<?php echo $form[Post_Meta::POSI_TITLE]; ?>" class="regular-text" />
+								<br><br>
+								<div id="<?php echo Post_Meta::POSI_POINTS; ?>_form">
+									<?php foreach ( $form[Post_Meta::POSI_POINTS] as $key => $value ): ?>
+										<div>
+											＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::POSI_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+											<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									<?php endforeach; ?>
+
+									<script type="text/html" id="<?php echo Post_Meta::POSI_POINTS; ?>_template">
+										<div>
+											＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
+											<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									</script>
+									<input type="button" id="<?php echo Post_Meta::POSI_POINTS ?>_add" class="button button-primary" value="Add">
+								</div>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Negatives</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::NEGA_TITLE ?>" type="text" id="<?php echo Post_Meta::NEGA_TITLE ?>" value="<?php echo $form[Post_Meta::NEGA_TITLE]; ?>" class="regular-text" />
+								<br><br>
+								<div id="<?php echo Post_Meta::NEGA_POINTS; ?>_form">
+									<?php foreach ( $form[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
+										<div>
+											－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::NEGA_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+											<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									<?php endforeach; ?>
+
+									<script type="text/html" id="<?php echo Post_Meta::NEGA_POINTS; ?>_template">
+										<div>
+											－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
+											<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
+											<br><br>
+										</div>
+									</script>
+									<input type="button" id="<?php echo Post_Meta::NEGA_POINTS ?>_add" class="button button-primary" value="Add">
+								</div>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div id="<?php echo Review_Options::ID ?>_design">
+				<h1>DESIGN</h1>
+
+				<table class="form-table">
+					<tr>
+						<th>Design</th>
+						<td>
+							<fieldset>
+								<?php foreach ( Design::getEnums() as $enum ): ?>
+									<label><input name="<?php echo Post_Meta::DESIGN ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::DESIGN] ); ?> /><?php echo $enum->getName() ?></label><br>
 								<?php endforeach; ?>
-
-								<script type="text/html" id="<?php echo Post_Meta::POSI_POINTS; ?>_template">
-									<div>
-										＋&nbsp;<input name="<?php echo Post_Meta::POSI_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
-										<input type="button" class="<?php echo Post_Meta::POSI_POINTS ?>_delete button button-primary" value="Delete" />
-										<br><br>
-									</div>
-								</script>
-								<input type="button" id="<?php echo Post_Meta::POSI_POINTS ?>_add" class="button button-primary" value="Add">
-							</div>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Negatives</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::NEGA_TITLE ?>" type="text" id="<?php echo Post_Meta::NEGA_TITLE ?>" value="<?php echo $form[Post_Meta::NEGA_TITLE]; ?>" class="regular-text" />
-							<br><br>
-							<div id="<?php echo Post_Meta::NEGA_POINTS; ?>_form">
-								<?php foreach ( $form[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
-									<div>
-										－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" id="<?php echo Post_Meta::NEGA_POINTS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-										<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
-										<br><br>
-									</div>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Effect</th>
+						<td>
+							<fieldset>
+								<?php foreach ( Effect::getEnums() as $enum ): ?>
+									<label><input name="<?php echo Post_Meta::EFFECT ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::EFFECT] ); ?> /><?php echo $enum->getName() ?></label><br>
 								<?php endforeach; ?>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Skin</th>
+						<td>
+							<fieldset>
+								<?php foreach ( Skin::getEnums() as $enum ): ?>
+									<label><input name="<?php echo Post_Meta::SKIN ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::SKIN] ); ?> /><?php echo $enum->getName() ?></label><br>
+								<?php endforeach; ?>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Color</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::COLOR ?>" type="text" id="<?php echo Post_Meta::COLOR ?>" value="<?php echo $form[Post_Meta::COLOR]; ?>" />
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-								<script type="text/html" id="<?php echo Post_Meta::NEGA_POINTS; ?>_template">
-									<div>
-										－&nbsp;<input name="<?php echo Post_Meta::NEGA_POINTS.'[]'; ?>" type="text" value="" class="regular-text" />
-										<input type="button" class="<?php echo Post_Meta::NEGA_POINTS ?>_delete button button-primary" value="Delete" />
-										<br><br>
-									</div>
-								</script>
-								<input type="button" id="<?php echo Post_Meta::NEGA_POINTS ?>_add" class="button button-primary" value="Add">
-							</div>
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</div>
+			<div id="<?php echo Review_Options::ID ?>_affiliate">
+				<h1>AFFILIATE</h1>
 
-		<div id="<?php echo Review_Options::ID ?>_design">
-			<h1>DESIGN</h1>
-
-			<table class="form-table">
-				<tr>
-					<th>Design</th>
-					<td>
-						<fieldset>
-							<?php foreach ( Design::getEnums() as $enum ): ?>
-								<label><input name="<?php echo Post_Meta::DESIGN ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::DESIGN] ); ?> /><?php echo $enum->getName() ?></label><br>
-							<?php endforeach; ?>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Effect</th>
-					<td>
-						<fieldset>
-							<?php foreach ( Effect::getEnums() as $enum ): ?>
-								<label><input name="<?php echo Post_Meta::EFFECT ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::EFFECT] ); ?> /><?php echo $enum->getName() ?></label><br>
-							<?php endforeach; ?>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Skin</th>
-					<td>
-						<fieldset>
-							<?php foreach ( Skin::getEnums() as $enum ): ?>
-								<label><input name="<?php echo Post_Meta::SKIN ?>" type="radio" value="<?php echo $enum->getId() ?>" <?php checked( $enum->getId(), $form[Post_Meta::SKIN] ); ?> /><?php echo $enum->getName() ?></label><br>
-							<?php endforeach; ?>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Color</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::COLOR ?>" type="text" id="<?php echo Post_Meta::COLOR ?>" value="<?php echo $form[Post_Meta::COLOR]; ?>" />
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</div>
-
-		<div id="<?php echo Review_Options::ID ?>_affiliate">
-			<h1>AFFILIATE</h1>
-
-			<table class="form-table">
-				<tr>
-					<th>Affliate block title</th>
-					<td>
-						<fieldset>
-							<input name="<?php echo Post_Meta::AFFILI_BLOCK_TITLE ?>" type="text" id="<?php echo Post_Meta::AFFILI_BLOCK_TITLE ?>" value="<?php echo $form[Post_Meta::AFFILI_BLOCK_TITLE]; ?>" class="regular-text" />
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Affliate list</th>
-					<td>
-						<fieldset>
-
-							<div id="<?php echo Post_Meta::AFFILI_TITLE; ?>">
-								<?php foreach ( $form[Post_Meta::AFFILI_TITLE] as $key => $value ): ?>
-									<div>
-										<label for="<?php echo Post_Meta::AFFILI_TITLE.$key ?>">TITLE
-											<input name="<?php echo Post_Meta::AFFILI_TITLE.'[]'; ?>" type="text" id="<?php echo Post_Meta::AFFILI_TITLE.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
-										</label>
+				<table class="form-table">
+					<tr>
+						<th>Affliate block title</th>
+						<td>
+							<fieldset>
+								<input name="<?php echo Post_Meta::AFFILI_BLOCK_TITLE ?>" type="text" id="<?php echo Post_Meta::AFFILI_BLOCK_TITLE ?>" value="<?php echo $form[Post_Meta::AFFILI_BLOCK_TITLE]; ?>" class="regular-text" />
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<th>Affliate list</th>
+						<td>
+							<fieldset>
+								<div id="<?php echo Post_Meta::AFFILI_TITLE; ?>_form">
+									<?php foreach ( $form[Post_Meta::AFFILI_TITLE] as $key => $value ): ?>
+										<div>
+											<label for="<?php echo Post_Meta::AFFILI_TITLE.$key ?>">TITLE
+												<input name="<?php echo Post_Meta::AFFILI_TITLE.'[]'; ?>" type="text" id="<?php echo Post_Meta::AFFILI_TITLE.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
+											</label>
 											<label for="<?php echo Post_Meta::AFFILI_URL.$key ?>">URL
-											<input name="<?php echo Post_Meta::AFFILI_URL.'[]'; ?>" type="text" id="<?php echo Post_Meta::AFFILI_URL.$key ?>" value="<?php echo $form[Post_Meta::AFFILI_URL][$key]; ?>" class="regular-text" />
-										</label>
-									</div>
-									<br><br>
-								<?php endforeach; ?>
+												<input name="<?php echo Post_Meta::AFFILI_URL.'[]'; ?>" type="text" id="<?php echo Post_Meta::AFFILI_URL.$key ?>" value="<?php echo $form[Post_Meta::AFFILI_URL][$key]; ?>" class="regular-text" />
+											</label>
+											<input type="button" class="<?php echo Post_Meta::AFFILI_TITLE ?>_delete button button-primary" value="Delete" />
+											<br />
+										</div>
+									<?php endforeach; ?>
 
-								<script type="text/html" id="<?php echo Post_Meta::AFFILI_TITLE; ?>_template">
-									<div>
-										<label>TITLE
-											<input name="<?php echo Post_Meta::AFFILI_TITLE.'[]'; ?>" type="text" value="" class="regular-text" />
-										</label>
-										<label>URL
-											<input name="<?php echo Post_Meta::AFFILI_URL.'[]'; ?>" type="text" value="" class="regular-text" />
-										</label>
-									</div>
-									<br><br>
-								</script>
-							</div>
+									<script type="text/html" id="<?php echo Post_Meta::AFFILI_TITLE; ?>_template">
+										<div>
+											<label>TITLE
+												<input name="<?php echo Post_Meta::AFFILI_TITLE.'[]'; ?>" type="text" value="" class="regular-text" />
+											</label>
+											<label>URL
+												<input name="<?php echo Post_Meta::AFFILI_URL.'[]'; ?>" type="text" value="" class="regular-text" />
+											</label>
+											<input type="button" class="<?php echo Post_Meta::AFFILI_TITLE ?>_delete button button-primary" value="Delete" />
+											<br />
+										</div>
+									</script>
+									<input type="button" id="<?php echo Post_Meta::AFFILI_TITLE ?>_add" class="button button-primary" value="Add">
+								</div>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</div>
+			<div id="<?php echo Review_Options::ID ?>_schema_type">
+				<h1>SCHEMA TYPE</h1>
 
-		<div id="<?php echo Review_Options::ID ?>_schema_type">
-			<h1>SCHEMA TYPE</h1>
+				<table class="form-table">
+					<tr>
+						<th>Schema type</th>
+						<td>
+							<fieldset>
+								<select name="<?php echo Post_Meta::SCHEMA_TYPE ?>" id="<?php echo Post_Meta::SCHEMA_TYPE ?>">
+									<?php foreach( Schema_Type::getEnums() as $enum ): ?>
+										<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Post_Meta::SCHEMA_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
+									<?php endforeach; ?>
+								</select>
+							</fieldset>
+						</td>
+					</tr>
+					<tr id="<?php echo Post_Meta::SCHEMA_TYPE; ?>_2">
+						<th>Schema properties</th>
+						<td>
+							<fieldset>
+								<div>
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>">DESCRIPTION
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION]; ?>" class="regular-text" />
+									</label>
+									<br />
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>">SKU
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_SKU]; ?>" class="regular-text" />
+									</label>
+									<br />
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>">MPN
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_MPN]; ?>" class="regular-text" />
+									</label>
+									<br />
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>">ISBN
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_ISBN]; ?>" class="regular-text" />
+									</label>
+									<br />
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>">BRAND
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_BRAND]; ?>" class="regular-text" />
+									</label>
+								</div>
+							</fieldset>
+						</td>
+					</tr>
+					<tr id="<?php echo Post_Meta::SCHEMA_TYPE; ?>_4">
+						<th>Schema properties</th>
+						<td>
+							<fieldset>
 
-			<table class="form-table">
-				<tr>
-					<th>Schema type</th>
-					<td>
-						<fieldset>
-							<select name="<?php echo Post_Meta::SCHEMA_TYPE ?>" id="<?php echo Post_Meta::SCHEMA_TYPE ?>">
-								<?php foreach( Schema_Type::getEnums() as $enum ): ?>
-									<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Post_Meta::SCHEMA_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
-								<?php endforeach; ?>
-							</select>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Schema properties</th>
-					<td>
-						<fieldset>
-							<div id="<?php echo Post_Meta::SCHEMA_TYPE; ?>_2">
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>">DESCRIPTION
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DESCRIPTION]; ?>" class="regular-text" />
-								</label>
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>">SKU
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_SKU ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_SKU]; ?>" class="regular-text" />
-								</label>
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>">MPN
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_MPN ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_MPN]; ?>" class="regular-text" />
-								</label>
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>">ISBN
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_ISBN ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_ISBN]; ?>" class="regular-text" />
-								</label>
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>">BRAND
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_BRAND ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_BRAND]; ?>" class="regular-text" />
-								</label>
-							</div>
-						</fieldset>
-					</td>
-				</tr>
-				<tr>
-					<th>Schema properties</th>
-					<td>
-						<fieldset>
-
-							<div id="<?php echo Post_Meta::SCHEMA_TYPE; ?>_4">
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>">DIRECTOR
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DIRECTOR]; ?>" class="regular-text" />
-								</label>
-								<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>">DATE CREATED
-									<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED]; ?>" class="regular-text" />
-								</label>
-							</div>
-						</fieldset>
-					</td>
-				</tr>
-			</table>
+								<div>
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>">DIRECTOR
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DIRECTOR ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DIRECTOR]; ?>" class="regular-text" />
+									</label>
+									<label for="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>">DATE CREATED
+										<input name="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>" type="text" id="<?php echo Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED ?>" value="<?php echo $form[Post_Meta::SCHEMA_PROPERTIE_DATE_CREATED]; ?>" class="regular-text" />
+									</label>
+								</div>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 <?php

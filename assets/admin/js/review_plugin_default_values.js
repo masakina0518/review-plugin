@@ -14,5 +14,8 @@
             var compiled = _.template(criterias_template);
             $_criterias_add_btn.before(compiled({}));
         });
+
+
+        $('#_review_plugin_def_color').wpColorPicker();
     });
 })(jQuery, _);

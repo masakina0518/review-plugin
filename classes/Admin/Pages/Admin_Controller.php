@@ -146,6 +146,9 @@ final class Admin_Controller {
 				View_Default_Values::SLUG
 			)
 		);
+		wp_enqueue_style(
+			'wp-color-picker'
+		);
 	}
 
 	/**
@@ -172,6 +175,12 @@ final class Admin_Controller {
 			array(
 				'jquery',
 				'underscore'
+			)
+		);
+		wp_enqueue_script(
+			'wp-color-picker',
+			array(
+				'jquery'
 			)
 		);
 	}
