@@ -1,0 +1,15 @@
+{
+	"version": 3,
+	"file": "front.css",
+	"sources": [
+		"../sass/front.scss",
+		"../sass/commons/_colors.scss",
+		"../sass/commons/_variables.scss",
+		"../sass/mixins/_breakpoints.scss",
+		"../sass/commons/_classes.scss",
+		"../sass/commons/_html.scss",
+		"../sass/front/_review_plugin_front.scss"
+	],
+	"names": [],
+	"mappings": "AAGA,OAAO,CAAC,0FAAI,CACZ,OAAO,CAAC,gFAAI,CMJZ,AACI,QADI,CACJ,IAAI,AAAC,CACD,aAAa,CAAE,KAAK,CAKvB,AHQD,MAAM,EAAE,SAAS,EAAE,KAAK,EGf5B,AACI,QADI,CACJ,IAAI,AAAC,CAIG,aAAa,CAAE,KAAK,CAE3B"
+}

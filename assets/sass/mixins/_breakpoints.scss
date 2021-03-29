@@ -1,0 +1,25 @@
+$breakpoint-up: (
+    'sm': '(min-width: 576px)',
+    'md': '(min-width: 768px)',
+    'lg': '(min-width: 992px)',
+    'xl': '(min-width: 1200px)'
+) !default;
+
+$breakpoint-down : (
+    'xs': '(max-width: 575.98px)',
+    'sm': '(max-width: 767.98px)',
+    'md': '(max-width: 991.98px)',
+    'lg': '(max-width: 1199.98px)'
+)!default;
+
+@mixin mq-up($breakpoint: sm) {
+    @media #{map-get($breakpoint-up, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin mq-down($breakpoint: xs) {
+    @media #{map-get($breakpoint-down, $breakpoint)} {
+        @content;
+    }
+}

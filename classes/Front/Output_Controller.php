@@ -23,7 +23,7 @@ final class Output_Controller {
 	/**
 	 * @var string
 	 */
-	const STYLE_NAME = 'review_plugin_front';
+	const STYLE_NAME = 'front';
 
 	/**
 	 * @var Path_Manager

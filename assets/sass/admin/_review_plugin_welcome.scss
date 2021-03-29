@@ -1,0 +1,9 @@
+.archive {
+    main {
+        margin-bottom: 100px;
+
+        @include mq-up(sm) {
+            margin-bottom: 200px;
+        }
+    }
+}

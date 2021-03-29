@@ -1,0 +1,15 @@
+{
+  "name": "review-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:admin": "node-sass --source-map true --include-path scss assets/sass/admin.scss assets/dist/css/admin.css --output-style compressed",
+    "build:front": "node-sass --source-map true --include-path scss assets/sass/front.scss assets/dist/css/front.css --output-style compressed"
+  },
+  "author": "kozo ogawa",
+  "license": "GPL",
+  "dependencies": {
+    "node-sass": "4.x"
+  }
+}

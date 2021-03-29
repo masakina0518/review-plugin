@@ -23,6 +23,11 @@ final class Review_Options {
 	/**
 	 * @var string
 	 */
+	const STYLE_NAME = 'admin';
+
+	/**
+	 * @var string
+	 */
 	const ID = 'review_options';
 
 	/**
@@ -114,9 +119,9 @@ final class Review_Options {
 	 */
 	public function style(): void {
 		wp_enqueue_style(
-			self::ID,
+			self::STYLE_NAME,
 			$this->pm->getAdminStylePath(
-				self::ID
+				self::STYLE_NAME
 			)
 		);
 		wp_enqueue_style(

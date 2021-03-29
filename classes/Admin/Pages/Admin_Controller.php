@@ -16,6 +16,11 @@ final class Admin_Controller {
 	/**
 	 * @var string
 	 */
+	const STYLE_NAME = 'admin';
+
+	/**
+	 * @var string
+	 */
 	const TITLE = 'Review Plugin';
 
 	/**
@@ -135,15 +140,9 @@ final class Admin_Controller {
 	 */
 	public function style(): void {
 		wp_enqueue_style(
-			View_Welcome::SLUG,
+			self::STYLE_NAME,
 			$this->pm->getAdminStylePath(
-				View_Welcome::SLUG
-			)
-		);
-		wp_enqueue_style(
-			View_Default_Values::SLUG,
-			$this->pm->getAdminStylePath(
-				View_Default_Values::SLUG
+				self::STYLE_NAME
 			)
 		);
 		wp_enqueue_style(
