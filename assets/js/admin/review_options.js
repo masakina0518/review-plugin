@@ -39,7 +39,7 @@
         });
 
         function switch_post_title_readonly(is_checked) {
-            if(is_checked === false) {
+            if(is_checked === true) {
                 $_post_title.prop('readonly', true);
                 return;
             }

@@ -1,9 +1,7 @@
-.archive {
-    main {
-        margin-bottom: 100px;
-
-        @include mq-up(sm) {
-            margin-bottom: 200px;
-        }
+.review-plugin-minimalist {
+    &__block {
+        padding: 30px;
+        margin-bottom: 10px;
+        background: $light-gray;
     }
 }

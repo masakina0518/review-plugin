@@ -255,7 +255,7 @@ final class View_Default_Values {
 						</fieldset>
 					</td>
 				</tr>
-				<tr>(
+				<tr>
 					<th>Gallery Block Title(not use)</th>
 					<td>
 						<fieldset>

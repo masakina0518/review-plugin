@@ -11,6 +11,11 @@ use ReviewPlugin\Front\Views\View;
 final class Minimalist implements View {
 
 	/**
+	 * @var string
+	 */
+	const DESIGN_CLASS = 'review-plugin-minimalist';
+
+	/**
 	 * @inheritDoc
 	 */
 	function __construct() {}
@@ -26,69 +31,61 @@ final class Minimalist implements View {
 			)
 		);
 ?>
-
-	<?php if ( $data[Post_Meta::USE_POST_TITLE] ): ?>
-		<div>
+<div class="<?php echo self::DESIGN_CLASS; ?>">
+	<?php if ( !$data[Post_Meta::USE_POST_TITLE] ): ?>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block">
 			<h2><?php echo $data[Post_Meta::POST_TITLE]; ?></h2>
 		</div>
-		<hr>
 
 	<?php else: ?>
-		<div>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block">
 			<h2><?php echo the_title(); ?></h2>
 		</div>
-		<hr>
 
 	<?php endif; ?>
 
-	<div>
-		<h3>Rating</h3>
-		<?php foreach ( $data[Post_Meta::CRITERIAS] as $key => $value ): ?>
-			<div>
-				<span><?php echo $value; ?></span>：<span><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></span>
-			</div>
-		<?php endforeach; ?>
-		<div>
-			<span><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></span>%<br>
-			<span><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></span>
-		</div>
-	</div>
-
-	<hr>
-
-	<div>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
 		<h3><?php echo $data[Post_Meta::CONCLUSION_TITLE]; ?></h3>
 			<div>
 				<?php echo $data[Post_Meta::CONCLUSION_CONTENTS]; ?>
 			</div>
 	</div>
 
-	<hr>
-
-	<div>
-		<h3><?php echo $data[Post_Meta::POSI_TITLE]; ?></h3>
-		<?php foreach ( $data[Post_Meta::POSI_POINTS] as $key => $value ): ?>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+		<h3>Rating</h3>
+		<?php foreach ( $data[Post_Meta::CRITERIAS] as $key => $value ): ?>
 			<div>
-				＋<?php echo $value; ?>
+				<span><?php echo $value; ?></span>：<span><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></span>
 			</div>
 		<?php endforeach; ?>
-
 	</div>
 
-	<hr>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+		<div>
+			<h3><?php echo $data[Post_Meta::POSI_TITLE]; ?></h3>
+			<?php foreach ( $data[Post_Meta::POSI_POINTS] as $key => $value ): ?>
+				<div>
+					＋<?php echo $value; ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
 
-	<div>
-		<h3><?php echo $data[Post_Meta::NEGA_TITLE]; ?></h3>
-		<?php foreach ( $data[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
-			<div>
-				＋<?php echo $value; ?>
-			</div>
-		<?php endforeach; ?>
-
+		<div>
+			<h3><?php echo $data[Post_Meta::NEGA_TITLE]; ?></h3>
+			<?php foreach ( $data[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
+				<div>
+					＋<?php echo $value; ?>
+				</div>
+			<?php endforeach; ?>
+		</div>
 	</div>
 
-	<hr>
 
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+		<span><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></span>%<br>
+		<span><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></span>
+	</div>
+</div>
 
 <?php
 		$output = ob_get_contents();
