@@ -46,7 +46,7 @@ final class Path_Manager {
 	 * @return string
 	 */
 	public function getAdminStylePath( string $name ): string {
-		return plugin_dir_url( $this->getAssetsPath() . 'dist/css/*') . $name . '.css';
+		return plugin_dir_url( $this->getAssetsPath() . 'dist/css/*') . $name . '.min.css';
 	}
 
 	/**
@@ -66,7 +66,7 @@ final class Path_Manager {
 	 * @return string
 	 */
 	public function getFrontStylePath( string $name ): string {
-		return plugin_dir_url( $this->getAssetsPath() . 'dist/css/*') . $name . '.css';
+		return plugin_dir_url( $this->getAssetsPath() . 'dist/css/*') . $name . '.min.css';
 	}
 
 }

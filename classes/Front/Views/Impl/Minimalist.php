@@ -32,23 +32,23 @@ final class Minimalist implements View {
 		);
 ?>
 <div class="<?php echo self::DESIGN_CLASS; ?>">
-	<?php if ( !$data[Post_Meta::USE_POST_TITLE] ): ?>
-		<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-			<h2><?php echo $data[Post_Meta::POST_TITLE]; ?></h2>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>">
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__post-title">
+			<?php if ( !$data[Post_Meta::USE_POST_TITLE] ): ?>
+				<?php echo $data[Post_Meta::POST_TITLE]; ?>
+			<?php else: ?>
+				<?php echo the_title(); ?>
+			<?php endif; ?>
 		</div>
-
-	<?php else: ?>
-		<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-			<h2><?php echo the_title(); ?></h2>
-		</div>
-
-	<?php endif; ?>
+	</div>
 
 	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-		<h3><?php echo $data[Post_Meta::CONCLUSION_TITLE]; ?></h3>
-			<div>
-				<?php echo $data[Post_Meta::CONCLUSION_CONTENTS]; ?>
-			</div>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__conclusion-title">
+			<?php echo $data[Post_Meta::CONCLUSION_TITLE]; ?>
+		</div>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__conclusion-contents">
+			<?php echo $data[Post_Meta::CONCLUSION_CONTENTS]; ?>
+		</div>
 	</div>
 
 	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
@@ -60,30 +60,30 @@ final class Minimalist implements View {
 		<?php endforeach; ?>
 	</div>
 
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-		<div>
-			<h3><?php echo $data[Post_Meta::POSI_TITLE]; ?></h3>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo self::DESIGN_CLASS; ?>__block--posi-nega-grid">
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block">
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__title"><?php echo $data[Post_Meta::POSI_TITLE]; ?></div>
 			<?php foreach ( $data[Post_Meta::POSI_POINTS] as $key => $value ): ?>
-				<div>
-					＋<?php echo $value; ?>
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__point">
+					<?php echo $value; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 
-		<div>
-			<h3><?php echo $data[Post_Meta::NEGA_TITLE]; ?></h3>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block">
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block__title"><?php echo $data[Post_Meta::NEGA_TITLE]; ?></div>
 			<?php foreach ( $data[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
-				<div>
-					＋<?php echo $value; ?>
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block__point">
+					<?php echo $value; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	</div>
-
-
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-		<span><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></span>%<br>
-		<span><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></span>
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo self::DESIGN_CLASS; ?>__block--final-score-grid">
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>">
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__score"><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></div>
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__title"><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></div>
+		</div>
 	</div>
 </div>
 
