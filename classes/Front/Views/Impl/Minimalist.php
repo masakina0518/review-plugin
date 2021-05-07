@@ -52,17 +52,22 @@ final class Minimalist implements View {
 	</div>
 
 	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
-		<h3>Rating</h3>
 		<?php foreach ( $data[Post_Meta::CRITERIAS] as $key => $value ): ?>
-			<div>
-				<span><?php echo $value; ?></span>：<span><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></span>
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block">
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__title"><?php echo $value; ?></div>
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__score"><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></div>
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__bar">
+					<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__bar__overlay" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>; width:<?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?>%;"></div>
+				</div>
 			</div>
 		<?php endforeach; ?>
 	</div>
 
 	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo self::DESIGN_CLASS; ?>__block--posi-nega-grid">
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block">
-			<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__title"><?php echo $data[Post_Meta::POSI_TITLE]; ?></div>
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__title">
+				<?php echo $data[Post_Meta::POSI_TITLE]; ?>
+			</div>
 			<?php foreach ( $data[Post_Meta::POSI_POINTS] as $key => $value ): ?>
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__point">
 					<?php echo $value; ?>
@@ -71,7 +76,9 @@ final class Minimalist implements View {
 		</div>
 
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block">
-			<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block__title"><?php echo $data[Post_Meta::NEGA_TITLE]; ?></div>
+			<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block__title">
+				<?php echo $data[Post_Meta::NEGA_TITLE]; ?>
+			</div>
 			<?php foreach ( $data[Post_Meta::NEGA_POINTS] as $key => $value ): ?>
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__negative-block__point">
 					<?php echo $value; ?>
@@ -83,6 +90,19 @@ final class Minimalist implements View {
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>">
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__score"><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></div>
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__title"><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></div>
+		</div>
+	</div>
+
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__affiliate-block-title">
+			<?php echo $data[Post_Meta::AFFILI_BLOCK_TITLE]; ?>
+		</div>
+		<div class="<?php echo self::DESIGN_CLASS; ?>__block__affiliate-block">
+			<?php foreach ( $data[Post_Meta::AFFILI_TITLE] as $key => $value ): ?>
+				<div class="<?php echo self::DESIGN_CLASS; ?>__block__affiliate-block__affiliate">
+					<a href="<?php echo $data[Post_Meta::AFFILI_URL][$key]; ?>" target="_blank"><?php echo $value; ?></a>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </div>
