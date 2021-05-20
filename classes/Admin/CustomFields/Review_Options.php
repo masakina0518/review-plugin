@@ -10,7 +10,6 @@ use ReviewPlugin\Constants\Items\Design;
 use ReviewPlugin\Constants\Items\Effect;
 use ReviewPlugin\Constants\Items\Format;
 use ReviewPlugin\Constants\Items\On_Off;
-use ReviewPlugin\Constants\Items\Review_Type;
 use ReviewPlugin\Constants\Items\Location;
 use ReviewPlugin\Constants\Items\Skin;
 use ReviewPlugin\Constants\Items\Schema_Type;
@@ -125,7 +124,7 @@ final class Review_Options {
 			)
 		);
 		wp_enqueue_style(
-			'wp-color-picker'
+			'wp-color-picker',
 		);
 	}
 
@@ -266,18 +265,6 @@ final class Review_Options {
 						</td>
 					</tr>
 					<tr>
-						<th>Review Type</th>
-						<td>
-							<fieldset>
-								<select name="<?php echo Post_Meta::REVIEW_TYPE ?>" id="<?php echo Post_Meta::REVIEW_TYPE ?>">
-									<?php foreach( Review_Type::getEnums() as $enum ): ?>
-										<option value="<?php echo $enum->getId(); ?>" <?php selected( $enum->getId(), $form[Post_Meta::REVIEW_TYPE] ); ?> ><?php echo $enum->getName(); ?></option>
-									<?php endforeach; ?>
-								</select>
-							</fieldset>
-						</td>
-					</tr>
-					<tr>
 						<th>Location</th>
 						<td>
 							<fieldset>
@@ -335,6 +322,8 @@ final class Review_Options {
 								<div id="<?php echo Post_Meta::CRITERIAS; ?>_form">
 									<?php foreach ( $form[Post_Meta::CRITERIAS] as $key => $value ): ?>
 										<div>
+											<div class="slider" style="width: 90%; height: 5px;"></div>
+
 											<input name="<?php echo Post_Meta::CRITERIAS.'[]'; ?>" type="text" id="<?php echo Post_Meta::CRITERIAS.$key ?>" value="<?php echo $value; ?>" class="regular-text" />
 											<input name="<?php echo Post_Meta::CRITERIA_SCORES.'[]'; ?>" type="number" id="<?php echo Post_Meta::CRITERIA_SCORES.$key ?>" value="<?php echo $form[Post_Meta::CRITERIA_SCORES][$key]; ?>" class="small-text" min="0" max="100" />
 											<input type="button" class="<?php echo Post_Meta::CRITERIAS ?>_delete button button-primary" value="Delete" />

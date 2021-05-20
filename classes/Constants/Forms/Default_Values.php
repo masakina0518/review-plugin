@@ -9,7 +9,6 @@ use ReviewPlugin\Constants\Items\Design;
 use ReviewPlugin\Constants\Items\Effect;
 use ReviewPlugin\Constants\Items\Format;
 use ReviewPlugin\Constants\Items\On_Off;
-use ReviewPlugin\Constants\Items\Review_Type;
 use ReviewPlugin\Constants\Items\Location;
 use ReviewPlugin\Constants\Items\Skin;
 use ReviewPlugin\Constants\Items\Schema_Type;
@@ -30,7 +29,7 @@ final class Default_Values {
 	const DEFAILT_VALUES = [
 		Options::FORMAT => Format::PERCENT,
 		Options::LOCATION => Location::BOTTOM,
-		Options::DESIGN => Design::MINIMALIST,
+		Options::DESIGN => Design::MINIMAL,
 		Options::EFFECT => Effect::NONE,
 		Options::SKIN => Skin::LIGHT,
 		Options::COLOR => '',
@@ -53,7 +52,6 @@ final class Default_Values {
 		Post_Meta::ENABLE_REVIEW => On_Off::OFF,
 		Post_Meta::USE_POST_TITLE => On_Off::OFF,
 		Post_Meta::POST_TITLE => '',
-		Post_Meta::REVIEW_TYPE => Review_Type::EDITOR_REVIEW_VISITOR_RATINGS,
 		Post_Meta::LOCATION => Location::BOTTOM,
 		Post_Meta::FORMAT => Format::PERCENT,
 		Post_Meta::SCORE_SUBTITLE => '',
@@ -66,7 +64,7 @@ final class Default_Values {
 		Post_Meta::POSI_POINTS => [],
 		Post_Meta::NEGA_TITLE => '',
 		Post_Meta::NEGA_POINTS => [],
-		Post_Meta::DESIGN => Design::BOLD,
+		Post_Meta::DESIGN => Design::MINIMAL,
 		Post_Meta::EFFECT => Effect::NONE,
 		Post_Meta::SKIN => Skin::LIGHT,
 		Post_Meta::COLOR => '',

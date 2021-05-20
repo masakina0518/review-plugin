@@ -32,10 +32,6 @@ class Output_Factory {
 				return new Top( $view, $post_id );
 				break;
 
-			case Location::TOPBOTTOM:
-				return new Top_Bottom( $view, $post_id );
-				break;
-
 			case Location::SHORTCODE:
 				return new Short_Code( $view, $post_id );
 				break;

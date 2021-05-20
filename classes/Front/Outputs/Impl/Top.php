@@ -35,6 +35,9 @@ final class Top implements Output {
 	* @inheritDoc
 	*/
 	public function adjust( string $content ): string {
+		if ( is_home() || is_front_page() ) {
+			return $content;
+		}
 		$data = $this->get_data( $this->post_id );
 		return $this->view->create( $data ).$content;
 	}

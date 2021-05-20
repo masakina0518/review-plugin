@@ -3,17 +3,19 @@
 namespace ReviewPlugin\Front\Views\Impl;
 
 use ReviewPlugin\Constants\Fields\Post_Meta;
+use ReviewPlugin\Constants\Items\Enum;
+use ReviewPlugin\Constants\Items\Skin;
 use ReviewPlugin\Front\Views\View;
 
 /**
- * Minimalist
+ * Minimal
  */
-final class Minimalist implements View {
+final class Minimal implements View {
 
 	/**
 	 * @var string
 	 */
-	const DESIGN_CLASS = 'review-plugin-minimalist';
+	const DESIGN_CLASS = 'review-plugin-minimal';
 
 	/**
 	 * @inheritDoc
@@ -24,6 +26,8 @@ final class Minimalist implements View {
 	 * @inheritDoc
 	 */
 	public function create( array $data ): string {
+		$skin =  (Enum::factory(Skin::class, $data[Post_Meta::SKIN])->equals(Skin::DARK)) ? 'dark' : '';
+
 		ob_start(
 			array(
 			$this ,
@@ -42,7 +46,7 @@ final class Minimalist implements View {
 		</div>
 	</div>
 
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo $skin; ?>">
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__conclusion-title">
 			<?php echo $data[Post_Meta::CONCLUSION_TITLE]; ?>
 		</div>
@@ -51,7 +55,7 @@ final class Minimalist implements View {
 		</div>
 	</div>
 
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo $skin; ?>">
 		<?php foreach ( $data[Post_Meta::CRITERIAS] as $key => $value ): ?>
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block">
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__title"><?php echo $value; ?></div>
@@ -63,7 +67,7 @@ final class Minimalist implements View {
 		<?php endforeach; ?>
 	</div>
 
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo self::DESIGN_CLASS; ?>__block--posi-nega-grid">
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo $skin; ?> <?php echo self::DESIGN_CLASS; ?>__block--posi-nega-grid">
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block">
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__positive-block__title">
 				<?php echo $data[Post_Meta::POSI_TITLE]; ?>
@@ -86,14 +90,14 @@ final class Minimalist implements View {
 			<?php endforeach; ?>
 		</div>
 	</div>
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo self::DESIGN_CLASS; ?>__block--final-score-grid">
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo $skin; ?> <?php echo self::DESIGN_CLASS; ?>__block--final-score-grid">
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>">
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__score"><?php echo $data[Post_Meta::CRITERIA_FINAL_SCORE]; ?></div>
 			<div class="<?php echo self::DESIGN_CLASS; ?>__block__final-score__title"><?php echo $data[Post_Meta::SCORE_SUBTITLE]; ?></div>
 		</div>
 	</div>
 
-	<div class="<?php echo self::DESIGN_CLASS; ?>__block">
+	<div class="<?php echo self::DESIGN_CLASS; ?>__block <?php echo $skin; ?>">
 		<div class="<?php echo self::DESIGN_CLASS; ?>__block__affiliate-block-title">
 			<?php echo $data[Post_Meta::AFFILI_BLOCK_TITLE]; ?>
 		</div>

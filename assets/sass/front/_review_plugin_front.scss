@@ -1,4 +1,4 @@
-.review-plugin-minimalist {
+.review-plugin-minimal {
     display: grid;
     grid-template-columns: repeat(2,1fr);
 
@@ -8,6 +8,11 @@
         background: $light-gray;
         grid-column-start: 1;
         grid-column-end: 4;
+
+        &.dark {
+            background: $black2;
+            color: $white;
+        }
 
         &__post-title {
             font-size: 20px;
@@ -94,6 +99,13 @@
                 font-size: 50px;
                 line-height: 1;
                 font-weight: 700;
+
+                &::after {
+                    content: '%';
+                    font-size: .4em;
+                    display: inline-block;
+                    margin-left: 3px;
+                }
             }
 
             &__title {
@@ -140,6 +152,10 @@
                 font-size: 12px;
                 font-weight: bold;
                 margin-left: auto;
+
+                &::after {
+                    content: '%';
+                }
             }
 
             &__bar {
@@ -177,7 +193,9 @@
                     height: 100%;
                     color: $black;
                     font-weight: bold;
-                    padding: 5px 20px;
+                    font-size: 12px;
+                    padding: 10px 20px;
+                    background-color: inherit;
 
                     &:hover {
                         color: $black;

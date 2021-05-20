@@ -51,9 +51,12 @@
     $(function() {
         var $_wrapper           = $('#review_options_wrappar');
         var $_criterias_form    = $_wrapper.find('#_review_plugin_criterias_form');
+        var $_sliders           = $_criterias_form.find('.slider');
         var $_criterias_add_btn = $_criterias_form.find('#_review_plugin_criterias_add');
         var criterias_template  = $_criterias_form.find('#_review_plugin_criterias_template').text();
         var $final_score_form   = $_wrapper.find('#_review_plugin_criteria_final_score_form');
+
+        $_sliders.slider();
 
         $_criterias_form.on('click', '._review_plugin_criterias_delete', function() {
             $(this).parent().remove();

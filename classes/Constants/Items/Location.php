@@ -12,19 +12,17 @@ final class Location extends Enum {
 
 	const BOTTOM	= '1';
 	const TOP		= '2';
-	const TOPBOTTOM	= '3';
-	const SHORTCODE = '4';
+	const SHORTCODE = '3';
 
 	private static $NAME = [
 		self::BOTTOM	=> 'BOTTOM',
 		self::TOP		=> 'TOP',
-		self::TOPBOTTOM	=> 'TOP + BOTTOM',
 		self::SHORTCODE => 'SHORTCODE',
 	];
 
 	private static $OUTPUT_GROUP = [
-		'contents'	=> [self::BOTTOM, self::TOP, self::TOPBOTTOM],
-		'shortcode'		=> [self::SHORTCODE]
+		'contents'	=> [self::BOTTOM, self::TOP],
+		'shortcode'	=> [self::SHORTCODE]
 	];
 
 	/**

@@ -10,20 +10,10 @@ use ReviewPlugin\Constants\Items\Enum;
  */
 final class Design extends Enum {
 
-	const MINIMALIST	= '1';
-	const BOLD			= '2';
-	const MODERN		= '3';
-	const MODERN_B 		= '4';
-	const CLEAN 		= '5';
-	const MINIMALIST_B	= '6';
+	const MINIMAL	= '1';
 
 	private static $NAME = [
-		self::MINIMALIST	=> 'MINIMALIST',
-		self::BOLD			=> 'BOLD',
-		self::MODERN		=> 'MODERN',
-		self::MODERN_B 		=> 'MODERN B',
-		self::CLEAN 		=> 'CLEAN',
-		self::MINIMALIST_B 	=> 'MINIMALIST B',
+		self::MINIMAL	=> 'MINIMAL',
 	];
 
 	/**

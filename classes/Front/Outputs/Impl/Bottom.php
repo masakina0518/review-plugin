@@ -36,6 +36,9 @@ final class Bottom implements Output {
 	* @inheritDoc
 	*/
 	public function adjust( string $content ): string {
+		if ( is_home() || is_front_page() ) {
+			return $content;
+		}
 		$data = $this->get_data( $this->post_id );
 		return $content.$this->view->create( $data );
 	}
