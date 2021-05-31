@@ -4,7 +4,7 @@
 
     &__block {
         padding: 30px;
-        margin-bottom: 10px;
+        margin-bottom: 2px;
         background: $light-gray;
         grid-column-start: 1;
         grid-column-end: 4;
@@ -96,6 +96,7 @@
 
             &__score {
                 margin-top: auto;
+                margin-bottom:3px;
                 font-size: 50px;
                 line-height: 1;
                 font-weight: 700;
@@ -165,8 +166,15 @@
 
                 &__overlay {
                     height: 7px;
-                    -webkit-animation: lr-width-up 2s;
-                    animation: lr-width-up 2s;
+
+                    &.incremental {
+                        @include animation(2s, lr-width-up);
+                    }
+
+                    &.fade_in {
+                        @include animation(1.2s , fadeIn);
+                    }
+
                 }
             }
         }
@@ -199,10 +207,6 @@
 
                     &:hover {
                         color: $black;
-                    }
-
-                    &::after {
-                        content: "\f30b";
                     }
                 }
             }

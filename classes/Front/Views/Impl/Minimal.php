@@ -3,6 +3,7 @@
 namespace ReviewPlugin\Front\Views\Impl;
 
 use ReviewPlugin\Constants\Fields\Post_Meta;
+use ReviewPlugin\Constants\Items\Effect;
 use ReviewPlugin\Constants\Items\Enum;
 use ReviewPlugin\Constants\Items\Skin;
 use ReviewPlugin\Front\Views\View;
@@ -27,6 +28,15 @@ final class Minimal implements View {
 	 */
 	public function create( array $data ): string {
 		$skin =  (Enum::factory(Skin::class, $data[Post_Meta::SKIN])->equals(Skin::DARK)) ? 'dark' : '';
+		$effect = '';
+		switch ($data[Post_Meta::EFFECT]) {
+			case Effect::INCREMENTAL:
+				$effect = 'incremental';
+				break;
+			case Effect::FADE_IN:
+				$effect = 'fade_in';
+				break;
+		}
 
 		ob_start(
 			array(
@@ -61,7 +71,7 @@ final class Minimal implements View {
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__title"><?php echo $value; ?></div>
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__score"><?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?></div>
 				<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__bar">
-					<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__bar__overlay" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>; width:<?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?>%;"></div>
+					<div class="<?php echo self::DESIGN_CLASS; ?>__block__criteria-block__bar__overlay <?php echo $effect; ?>" style="background-color: <?php echo $data[Post_Meta::COLOR]; ?>; width:<?php echo $data[Post_Meta::CRITERIA_SCORES][$key]; ?>%;"></div>
 				</div>
 			</div>
 		<?php endforeach; ?>

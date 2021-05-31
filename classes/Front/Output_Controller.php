@@ -84,6 +84,13 @@ final class Output_Controller {
 				self::STYLE_NAME
 			)
 		);
+
+		wp_enqueue_style(
+			self::STYLE_NAME,
+			$this->pm->getFrontStylePath(
+				self::STYLE_NAME
+			)
+		);
 	}
 
 	/**
